@@ -26,6 +26,8 @@ export class MyApp {
       { title: 'Módulos', component: 'ModuloListaPage'},
       { title: 'Piquetes', component: PiqueteListaPage },
       { title: 'Manejo', component: 'ManejoFormPage'},
+      { title: 'Categoria', component: 'FinanceiroCategoriaListaPage'},
+      { title: 'Lançamento de contas', component: 'FinanceiroMovimentacaoListaPage'}
       // { title: 'Cliente', component: 'ClienteListaPage'},
       // { title: 'Compra', component: 'CompraListaPage'},
       // { title: 'Venda', component: 'VendaListaPage'},
