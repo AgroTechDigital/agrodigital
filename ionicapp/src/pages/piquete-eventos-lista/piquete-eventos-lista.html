@@ -1,18 +1,34 @@
-<!--
-  Generated template for the PiqueteEventosListaPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>piqueteEventosLista</ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
-<ion-content padding>
-
-</ion-content>
+    <ion-navbar color="primary">
+      <ion-title>Eventos dos piquetes</ion-title>
+  
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+  
+      <ion-buttons end>
+        <button ion-button icon-only (click)="abrir()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  
+    <ion-toolbar color="primary">
+      <ion-searchbar (input)="buscando = true" (ionInput)="buscar()" [(ngModel)]="termoBuscado" debounce="500" placeholder="Pesquisar..."></ion-searchbar>
+    </ion-toolbar>
+  
+  </ion-header>
+  
+  <ion-content>
+  
+    <ion-list>
+      <ion-item text-wrap *ngFor="let item of lista" (click)="abrir(item)">
+        <ion-avatar item-start>
+          <img src="assets/imgs/img-pasto.jpg">
+        </ion-avatar>
+        {{ item.nome }}
+      </ion-item>
+    </ion-list>
+  
+  </ion-content>

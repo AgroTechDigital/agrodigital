@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the PiqueteEventosListaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { PiqueteEventos, PiqueteEventosApi } from '../../app/shared/sdk';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,36 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PiqueteEventosListaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public buscando: boolean = false;
+  public termoBuscado: string = '';
+  public lista: PiqueteEventos[];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public API: PiqueteEventosApi) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PiqueteEventosListaPage');
+  ionViewDidEnter() {
+    this.buscar();
+  }
+
+  buscar() {
+
+    this.API.find({
+      where: {
+        descricao: { like: this.termoBuscado, options: 'i' }
+      }
+    }).subscribe(
+      (data: PiqueteEventos[]) => {
+        this.lista = data;
+
+      }
+    )
+  }
+
+  abrir(item: PiqueteEventos = null) {
+    if (item)
+      this.navCtrl.push('PiqueteEventosFormPage', { item: item });
+    else
+      this.navCtrl.push('PiqueteEventosFormPage');
   }
 
 }
