@@ -15,7 +15,8 @@ export class MyApp {
   rootPage: any = ModuloListaPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    LoopBackConfig.setBaseURL('http://127.0.0.1:3000');
+    // LoopBackConfig.setBaseURL('http://127.0.0.1:3000');
+    LoopBackConfig.setBaseURL('http://192.168.1.137:3000');
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
