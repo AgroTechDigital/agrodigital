@@ -34,7 +34,13 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "animais": {
+      "type": "hasMany",
+      "model": "animal",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }
