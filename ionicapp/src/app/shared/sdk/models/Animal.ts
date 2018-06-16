@@ -15,7 +15,7 @@ export interface AnimalInterface {
   "id"?: any;
   "createdAt"?: Date;
   "updatedAt"?: Date;
-}
+} 
 
 export class Animal implements AnimalInterface {
   "tipo": string;
