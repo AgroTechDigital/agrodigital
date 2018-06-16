@@ -48,7 +48,18 @@
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "eventos": {
+      "type": "hasMany",
+      "model": "animalEventos",
+      "foreignKey": ""
+    },
+    "piquete": {
+      "type": "belongsTo",
+      "model": "piquete",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }
