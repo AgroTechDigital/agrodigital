@@ -1,18 +1,102 @@
-<!--
-  Generated template for the ManejoFormPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>manejoForm</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Manejo</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="salvar()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="excluir()" *ngIf="dadosDoForm.id">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Origem</ion-label>
+      <ion-select [(ngModel)]="dadosDoForm.origemId">
+        <ion-option value="" selected>Nenhum</ion-option>
+        <ion-option *ngFor="let item of listaPiquetes" value="{{item.id}}">{{ item.nome }}
+          <span *ngIf="item.numero"> - {{item.numero}} </span>
+        </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Destino</ion-label>
+      <ion-select [(ngModel)]="dadosDoForm.destinoId">
+        <ion-option value="" selected>Nenhum</ion-option>
+        <ion-option *ngFor="let item of listaPiquetes" value="{{item.id}}">{{ item.nome }}
+          <span *ngIf="item.numero"> - {{item.numero}} </span>
+        </ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-icon color="primary" name="cube" item-start></ion-icon>
+    <ion-label stacked>Descrição</ion-label>
+    <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.descricao"></ion-input>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Total Cabeças</ion-label>
+          <ion-input type="text" readonly [(ngModel)]="dadosDoForm.cabecas"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item>
+          <ion-label stacked>Total UA</ion-label>
+          <ion-input type="text" readonly [(ngModel)]="dadosDoForm.UA"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <h3>Animais</h3>
+  <ion-list>
+    <ion-item text-wrap *ngFor="let item of listaTipo">
+      <ion-avatar item-start>
+        <img src="assets/imgs/{{item.image}}">
+      </ion-avatar>
+
+      {{item.nome}}
+      <div item-end>
+
+        <div *ngIf="item.sexo == 'M' || !item.sexo">
+          Macho
+          <button ion-button icon-only round (click)="soma(item,'M');">
+            <ion-icon name="add"></ion-icon>
+          </button>
+          <button ion-button icon-only round (click)="subtrair(item,'M')">
+            <ion-icon name="remove"></ion-icon>
+          </button>
+          {{item.qtdMacho}}
+        </div>
+        <div *ngIf="item.sexo == 'F' || !item.sexo">
+          Femea
+          <button ion-button icon-only round (click)="soma(item,'F');">
+            <ion-icon name="add"></ion-icon>
+          </button>
+          <button ion-button icon-only round (click)="subtrair(item,'M')">
+            <ion-icon name="remove"></ion-icon>
+          </button>
+          {{item.qtdFemea}}
+        </div>
+      </div>
+
+    </ion-item>
+  </ion-list>
 
 </ion-content>

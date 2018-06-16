@@ -1,4 +1,8 @@
 /* tslint:disable */
+import {
+  Piquete,
+  AnimalEventos
+} from '../index';
 
 declare var Object: any;
 export interface AnimalInterface {
@@ -12,10 +16,15 @@ export interface AnimalInterface {
   "nascimento"?: Date;
   "peso"?: number;
   "status"?: string;
+  "unidadeAnimal"?: number;
   "id"?: any;
+  "piqueteId"?: any;
+  "manejoId"?: any;
   "createdAt"?: Date;
   "updatedAt"?: Date;
-} 
+  piquete?: Piquete;
+  eventos?: AnimalEventos[];
+}
 
 export class Animal implements AnimalInterface {
   "tipo": string;
@@ -28,9 +37,14 @@ export class Animal implements AnimalInterface {
   "nascimento": Date;
   "peso": number;
   "status": string;
+  "unidadeAnimal": number;
   "id": any;
+  "piqueteId": any;
+  "manejoId": any;
   "createdAt": Date;
   "updatedAt": Date;
+  piquete: Piquete;
+  eventos: AnimalEventos[];
   constructor(data?: AnimalInterface) {
     Object.assign(this, data);
   }
@@ -105,8 +119,20 @@ export class Animal implements AnimalInterface {
           name: 'status',
           type: 'string'
         },
+        "unidadeAnimal": {
+          name: 'unidadeAnimal',
+          type: 'number'
+        },
         "id": {
           name: 'id',
+          type: 'any'
+        },
+        "piqueteId": {
+          name: 'piqueteId',
+          type: 'any'
+        },
+        "manejoId": {
+          name: 'manejoId',
           type: 'any'
         },
         "createdAt": {
@@ -119,6 +145,22 @@ export class Animal implements AnimalInterface {
         },
       },
       relations: {
+        piquete: {
+          name: 'piquete',
+          type: 'Piquete',
+          model: 'Piquete',
+          relationType: 'belongsTo',
+                  keyFrom: 'piqueteId',
+          keyTo: 'id'
+        },
+        eventos: {
+          name: 'eventos',
+          type: 'AnimalEventos[]',
+          model: 'AnimalEventos',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'animalId'
+        },
       }
     }
   }

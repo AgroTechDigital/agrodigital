@@ -31,6 +31,12 @@
       "type": [
         "object"
       ]
+    },
+    "cabecas": {
+      "type": "number"
+    },
+    "UA": {
+      "type": "number"
     }
   },
   "validations": [],
@@ -38,6 +44,16 @@
     "animais": {
       "type": "hasMany",
       "model": "animal",
+      "foreignKey": ""
+    },
+    "origem": {
+      "type": "belongsTo",
+      "model": "piquete",
+      "foreignKey": ""
+    },
+    "destino": {
+      "type": "belongsTo",
+      "model": "piquete",
       "foreignKey": ""
     }
   },

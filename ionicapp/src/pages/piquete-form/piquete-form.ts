@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Piquete, PiqueteApi, Modulo, ModuloApi } from '../../app/shared/sdk';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
+import { Piquete, PiqueteApi, Modulo, ModuloApi, PiqueteEventosApi, PiqueteEventos } from '../../app/shared/sdk';
 
 @IonicPage()
 @Component({
@@ -11,18 +11,53 @@ export class PiqueteFormPage {
 
   public dadosDoForm: Piquete = new Piquete();
   public listaModulos: Modulo[] = [];
+  public listaEventos: PiqueteEventos[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public API: PiqueteApi, public moduloApi: ModuloApi) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public modalCtrl: ModalController,
+    public API: PiqueteApi,
+    public moduloApi: ModuloApi,
+    public piqueteEventosApi: PiqueteEventosApi
+  ) {
     let item = navParams.get('item');
     if (item) this.dadosDoForm = Object.assign(new Piquete, item);
   }
 
   ionViewDidEnter() {
+    //Buscar Todos os Modulos
     this.moduloApi.find().subscribe(
-      (modulos: Modulo[]) => {
-        this.listaModulos = modulos;
+      (retorno: Modulo[]) => {
+        this.listaModulos = retorno;
       }
     )
+
+    //Buscar os eventos deste piquete
+    this.buscarEventos();
+  }
+
+  callbackEventos = (_params) => {
+    return new Promise((resolve, reject) => {
+      this.buscarEventos();
+      resolve();
+    })
+  }
+
+  buscarEventos() {
+    this.piqueteEventosApi.find({ where: { piqueteId: this.dadosDoForm.id } }).subscribe(
+      (data: PiqueteEventos[]) => {
+        this.listaEventos = data;
+      }
+    )
+  }
+
+  abrirEvento(evento: PiqueteEventos) {
+    let modal = this.modalCtrl.create('PiqueteEventosFormPage', { item: evento, callback: this.callbackEventos });
+    modal.present();
+  }
+
+  novoEvento() {
+    let modal = this.modalCtrl.create('PiqueteEventosFormPage', { piquete: this.dadosDoForm, callback: this.callbackEventos });
+    modal.present();
   }
 
   salvar() {
@@ -32,7 +67,7 @@ export class PiqueteFormPage {
       if (!this.dadosDoForm.moduloId) throw 'Selecione algum módulo';
 
       this.API.upsert(this.dadosDoForm).subscribe(
-        (modulo: Piquete) => {
+        (retorno: Piquete) => {
           this.navCtrl.pop();
         }
       )

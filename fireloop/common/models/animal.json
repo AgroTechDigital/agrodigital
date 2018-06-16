@@ -45,6 +45,9 @@
     },
     "status": {
       "type": "string"
+    },
+    "unidadeAnimal": {
+      "type": "number"
     }
   },
   "validations": [],

@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the AnimalFormPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Animal, AnimalApi } from '../../app/shared/sdk';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,36 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AnimalFormPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public dadosDoForm: Animal = new Animal();
+
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, public API: AnimalApi) {
+    let item = navParams.get('item');
+    if (item) this.dadosDoForm = Object.assign(new Animal, item);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AnimalFormPage');
+
+  }
+
+  salvar() {
+
+    try {
+      if (!this.dadosDoForm.tipo) throw 'Informe o tipo do animal';
+      
+      this.API.upsert(this.dadosDoForm).subscribe(
+        (retorno: Animal) => {
+          this.navCtrl.pop();
+        }
+      )
+
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  excluir() {
+
   }
 
 }

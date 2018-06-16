@@ -1,18 +1,131 @@
-<!--
-  Generated template for the AnimalFormPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>animalForm</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Animal</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="salvar()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="excluir()" *ngIf="dadosDoForm.id">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+
+    <ion-item>
+        <ion-icon color="primary" name="cube" item-start></ion-icon>
+        <ion-label stacked>Etiqueta</ion-label>
+        <ion-input id="etiqueta" type="text" [(ngModel)]="dadosDoForm.etiqueta"></ion-input>
+      </ion-item> 
+
+    <ion-item>
+        <ion-icon color="primary" name="cube" item-start></ion-icon>
+        <ion-label stacked>Raça</ion-label>
+        <ion-input id="raca" type="text" [(ngModel)]="dadosDoForm.raca"></ion-input>
+      </ion-item> 
+        
+    <ion-item>
+        <ion-icon color="primary" name="cube" item-start></ion-icon>
+        <ion-label stacked>Categoria</ion-label>
+        <ion-input id="categoria" type="text" [(ngModel)]="dadosDoForm.categoria"></ion-input>
+      </ion-item> 
+      
+      <ion-list>
+          <ion-item>
+            <ion-label color="primary" name="cube" item-start>Tipo</ion-label>
+            <ion-select [(ngModel)]="dadosDoForm.tipo">
+              <ion-option value="Bovino">Bovino</ion-option>
+              <ion-option value="Equino">Equino</ion-option>                            
+              <ion-option value="Bubalino">Bubalino</ion-option>                            
+            </ion-select>
+          </ion-item>
+        </ion-list>
+
+    <ion-item>
+        <ion-icon color="primary" name="cube" item-start></ion-icon>
+        <ion-label stacked>Origem</ion-label>
+        <ion-input id="origem" type="text" [(ngModel)]="dadosDoForm.origem"></ion-input>
+      </ion-item> 
+    
+      <ion-list>
+          <ion-item>
+            <ion-label color="primary" name="cube" item-start>Origem</ion-label>
+            <ion-select [(ngModel)]="dadosDoForm.origem">
+                <ion-option value="Recria">Compra</ion-option>
+              <ion-option value="Cria">Nascimento</ion-option>                            
+            </ion-select>
+          </ion-item>
+        </ion-list>
+
+      <ion-list>
+          <ion-item>
+            <ion-label color="primary" name="cube" item-start>Finalidade</ion-label>
+            <ion-select [(ngModel)]="dadosDoForm.finalidade">
+              <ion-option value="Cria">Cria</ion-option>
+              <ion-option value="Recria">Recria</ion-option>
+              <ion-option value="Engorda">Engorda</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+
+    <ion-item>
+        <ion-label color="primary" name="cube" item-start>Data de nascimento</ion-label>
+        <ion-datetime [(ngModel)]="dadosDoForm.nascimento" type="datetime" displayFormat="DD/MM/YYYY"></ion-datetime>
+      </ion-item>
+
+    <ion-item>
+        <ion-icon color="primary" name="cube" item-start></ion-icon>
+        <ion-label stacked>Peso</ion-label>
+        <ion-input id="peso" type="text" [(ngModel)]="dadosDoForm.peso"></ion-input>
+      </ion-item> 
+
+    <ion-list>
+        <ion-item>
+          <ion-label color="primary" name="cube" item-start>Status</ion-label>
+          <ion-select [(ngModel)]="dadosDoForm.status">
+            <ion-option value="Vivo">Vivo</ion-option>              
+              <ion-option value="Morto">Morto</ion-option>
+              <ion-option value="Vendido">Vendido</ion-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+  
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" name="cube" item-start>Unidade animal</ion-label>
+      <ion-select [(ngModel)]="dadosDoForm.unidadeAnimal">
+        <ion-option value="1,25">Touro</ion-option>
+          <ion-option value="1,00">Vaca</ion-option>
+          <ion-option value="0,25">Menos de 1 ano</ion-option>
+          <ion-option value="0,50">1-2 anos</ion-option>
+          <ion-option value="0,75">2-3 anos</ion-option>
+          <ion-option value="1,50">Serviço</ion-option>
+          <ion-option value="1,50">Equídios</ion-option>
+          <ion-option value="1,50">Bovinos</ion-option>
+          <ion-option value="0,25">Ovino</ion-option>
+          <ion-option value="0,25">Caprino adulto</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+      <ion-item>
+        <ion-label color="primary" name="cube" item-start>Sexo</ion-label>
+        <ion-select [(ngModel)]="dadosDoForm.sexo">
+          <ion-option value="1">Macho</ion-option>
+          <ion-option value="0">Fêmea</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  
+  <!-- <ion-item>
+      <ion-label color="primary" name="cube" item-start>Macho</ion-label>    
+      <ion-toggle [(ngModel)]="dadosDoForm.sexo" checked="false"></ion-toggle>
+    </ion-item>       -->
 
 </ion-content>

@@ -33,7 +33,7 @@
     <ion-item>
       <ion-label>Módulo</ion-label>
       <ion-select [(ngModel)]="dadosDoForm.moduloId">
-          <ion-option value="" selected>Nenhum</ion-option>
+        <ion-option value="" selected>Nenhum</ion-option>
         <ion-option *ngFor="let item of listaModulos" value="{{item.id}}">{{ item.descricao }}</ion-option>
       </ion-select>
     </ion-item>
@@ -48,7 +48,7 @@
       </ion-select>
     </ion-item>
   </ion-list>
-  
+
 
   <ion-list>
     <ion-item>
@@ -92,7 +92,15 @@
     <ion-input id="descricao" type="number" [(ngModel)]="dadosDoForm.capacidadeUa"></ion-input>
   </ion-item>
 
-
+  <div *ngIf="dadosDoForm.id">
+    <h3>Eventos</h3>
+    <button ion-button block (click)="novoEvento()">Adicionar</button>
+    <ion-list>
+      <ion-item text-wrap *ngFor="let item of listaEventos" (click)="abrirEvento(item)">
+        {{ item.nome }}
+      </ion-item>
+    </ion-list>
+  </div>
 
 
 </ion-content>

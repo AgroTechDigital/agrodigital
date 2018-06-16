@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the AnimalListaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Animal, AnimalApi } from '../../app/shared/sdk';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,41 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class AnimalListaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public buscando: boolean = false;
+  public termoBuscado: string = '';
+  public lista: Animal[];
+
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     public API: AnimalApi) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AnimalListaPage');
+    // this.buscar();
   }
 
+  ionViewDidEnter() {
+    this.buscar();
+  }
+
+  buscar() {
+
+    this.API.find({
+      where: {
+        categoria: { like: this.termoBuscado, options: 'i' }
+      }
+    }).subscribe(
+      (retorno: Animal[]) => {
+        this.lista = retorno;
+
+      }
+    )
+  }
+
+  abrir(item: Animal = null) {
+    if (item)
+      this.navCtrl.push('AnimalFormPage', { item: item });
+    else
+      this.navCtrl.push('AnimalFormPage');
+  }
 }

@@ -3,10 +3,20 @@
     "name": "db-memory",
     "connector": "memory"
   },
-  "db": {
+  "db-online": {
     "host": "",
     "port": 0,
     "url": "mongodb://hackathon:123Mudar@cluster0-shard-00-00-jpkqg.mongodb.net:27017,cluster0-shard-00-01-jpkqg.mongodb.net:27017,cluster0-shard-00-02-jpkqg.mongodb.net:27017/agrodigital?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true",
+    "database": "",
+    "password": "",
+    "name": "db-online",
+    "user": "",
+    "connector": "mongodb"
+  },
+  "db": {
+    "host": "",
+    "port": 0,
+    "url": "mongodb://localhost:27017/agrodigital",
     "database": "",
     "password": "",
     "name": "db",
