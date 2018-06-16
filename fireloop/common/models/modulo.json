@@ -6,6 +6,11 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "TimeStamp": {
+      "required": false
+    }
+  },
   "properties": {
     "descricao": {
       "type": "string",
@@ -20,10 +25,5 @@
   "validations": [],
   "relations": {},
   "acls": [],
-  "methods": {},
-  "mixins": {   
-    "TimeStamp": {
-      "required": false
-    }    
-  }
+  "methods": {}
 }
