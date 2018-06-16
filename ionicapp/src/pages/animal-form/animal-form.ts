@@ -25,7 +25,7 @@ export class AnimalFormPage {
 
     try {
       if (!this.dadosDoForm.tipo) throw 'Informe o tipo do animal';
-
+      
       this.API.upsert(this.dadosDoForm).subscribe(
         (retorno: Animal) => {
           this.navCtrl.pop();
