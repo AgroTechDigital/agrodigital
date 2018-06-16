@@ -51,6 +51,9 @@ import { RealTime } from './services/core/real.time';
 import { UserApi } from './services/custom/User';
 import { ModuloApi } from './services/custom/Modulo';
 import { PiqueteApi } from './services/custom/Piquete';
+import { PiqueteEventosApi } from './services/custom/PiqueteEventos';
+import { ManejoApi } from './services/custom/Manejo';
+import { AnimalApi } from './services/custom/Animal';
 /**
 * @module SDKBrowserModule
 * @description
@@ -84,6 +87,9 @@ export class SDKBrowserModule {
         UserApi,
         ModuloApi,
         PiqueteApi,
+        PiqueteEventosApi,
+        ManejoApi,
+        AnimalApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

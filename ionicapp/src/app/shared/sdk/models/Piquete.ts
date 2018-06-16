@@ -1,4 +1,8 @@
 /* tslint:disable */
+import {
+  Modulo,
+  PiqueteEventos
+} from '../index';
 
 declare var Object: any;
 export interface PiqueteInterface {
@@ -13,8 +17,11 @@ export interface PiqueteInterface {
   "capacidadeUa"?: number;
   "historicoUa"?: Array<any>;
   "id"?: any;
+  "moduloId"?: any;
   "createdAt"?: Date;
   "updatedAt"?: Date;
+  modulo?: Modulo;
+  eventos?: PiqueteEventos[];
 }
 
 export class Piquete implements PiqueteInterface {
@@ -29,8 +36,11 @@ export class Piquete implements PiqueteInterface {
   "capacidadeUa": number;
   "historicoUa": Array<any>;
   "id": any;
+  "moduloId": any;
   "createdAt": Date;
   "updatedAt": Date;
+  modulo: Modulo;
+  eventos: PiqueteEventos[];
   constructor(data?: PiqueteInterface) {
     Object.assign(this, data);
   }
@@ -110,6 +120,10 @@ export class Piquete implements PiqueteInterface {
           name: 'id',
           type: 'any'
         },
+        "moduloId": {
+          name: 'moduloId',
+          type: 'any'
+        },
         "createdAt": {
           name: 'createdAt',
           type: 'Date'
@@ -120,6 +134,22 @@ export class Piquete implements PiqueteInterface {
         },
       },
       relations: {
+        modulo: {
+          name: 'modulo',
+          type: 'Modulo',
+          model: 'Modulo',
+          relationType: 'belongsTo',
+                  keyFrom: 'moduloId',
+          keyTo: 'id'
+        },
+        eventos: {
+          name: 'eventos',
+          type: 'PiqueteEventos[]',
+          model: 'PiqueteEventos',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'piqueteId'
+        },
       }
     }
   }

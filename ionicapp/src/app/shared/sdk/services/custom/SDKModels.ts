@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/User';
 import { Modulo } from '../../models/Modulo';
 import { Piquete } from '../../models/Piquete';
+import { PiqueteEventos } from '../../models/PiqueteEventos';
+import { Manejo } from '../../models/Manejo';
+import { Animal } from '../../models/Animal';
 
 export interface Models { [name: string]: any }
 
@@ -13,6 +16,9 @@ export class SDKModels {
     User: User,
     Modulo: Modulo,
     Piquete: Piquete,
+    PiqueteEventos: PiqueteEventos,
+    Manejo: Manejo,
+    Animal: Animal,
     
   };
 

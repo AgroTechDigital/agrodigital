@@ -1,4 +1,7 @@
 /* tslint:disable */
+import {
+  Piquete
+} from '../index';
 
 declare var Object: any;
 export interface ModuloInterface {
@@ -7,6 +10,7 @@ export interface ModuloInterface {
   "id"?: any;
   "createdAt"?: Date;
   "updatedAt"?: Date;
+  piquetes?: Piquete[];
 }
 
 export class Modulo implements ModuloInterface {
@@ -15,6 +19,7 @@ export class Modulo implements ModuloInterface {
   "id": any;
   "createdAt": Date;
   "updatedAt": Date;
+  piquetes: Piquete[];
   constructor(data?: ModuloInterface) {
     Object.assign(this, data);
   }
@@ -71,6 +76,14 @@ export class Modulo implements ModuloInterface {
         },
       },
       relations: {
+        piquetes: {
+          name: 'piquetes',
+          type: 'Piquete[]',
+          model: 'Piquete',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'moduloId'
+        },
       }
     }
   }
