@@ -1,14 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Modulo, ModuloApi } from './../../app/shared/sdk/index';
-/**
- * Generated class for the ModuloListaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-modulo-lista',
   templateUrl: 'modulo-lista.html',

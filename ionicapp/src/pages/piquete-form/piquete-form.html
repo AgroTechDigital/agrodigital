@@ -1,0 +1,86 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Piquete</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="salvar()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="excluir()" *ngIf="dadosDoForm.id">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item>
+    <ion-icon color="primary" name="cube" item-start></ion-icon>
+    <ion-label stacked>Nome</ion-label>
+    <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.nome"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon color="primary" name="cube" item-start></ion-icon>
+    <ion-label stacked>Número</ion-label>
+    <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.numero"></ion-input>
+  </ion-item>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="dadosDoForm.tipo">
+        <ion-option value="extensivo">Extensivo</ion-option>
+        <ion-option value="intensivo">Intensivo</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Tipo de capim</ion-label>
+      <ion-select [(ngModel)]="dadosDoForm.tipoCapim">
+        <ion-option value="mombaca">Mombaça</ion-option>
+        <ion-option value="braqueara">Braqueara</ion-option>
+        <ion-option value="quicuia">Quicuia</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [(ngModel)]="dadosDoForm.tipoRecuperacao">
+        <ion-option value="recuperacao">Recuperação</ion-option>
+        <ion-option value="uso">Uso</ion-option>
+        <ion-option value="ocupado">Ocupado</ion-option>
+        <ion-option value="interditado">Interditado</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-icon color="primary" name="cube" item-start></ion-icon>
+    <ion-label stacked>Área</ion-label>
+    <ion-input id="descricao" type="number" [(ngModel)]="dadosDoForm.area"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon color="primary" name="cube" item-start></ion-icon>
+    <ion-label stacked>Tempo de recuperação</ion-label>
+    <ion-input id="descricao" type="number" [(ngModel)]="dadosDoForm.tempo-recuperacao"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon color="primary" name="cube" item-start></ion-icon>
+    <ion-label stacked>Capacidade (UA)</ion-label>
+    <ion-input id="descricao" type="number" [(ngModel)]="dadosDoForm.capacidadeUa"></ion-input>
+  </ion-item>
+
+
+
+
+</ion-content>

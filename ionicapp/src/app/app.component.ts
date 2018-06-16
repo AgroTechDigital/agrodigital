@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoopBackConfig } from './shared/sdk';
-import { ModuloListaPage } from '../pages/modulo-lista/modulo-lista';
+import { PiqueteListaPage } from '../pages/piquete-lista/piquete-lista';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +12,7 @@ import { ModuloListaPage } from '../pages/modulo-lista/modulo-lista';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = ModuloListaPage;
+  rootPage: any = PiqueteListaPage;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -22,7 +22,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: ModuloListaPage },
+      { title: 'Módulos', component: 'ModuloListaPage' },
+      { title: 'Piquetes', component: PiqueteListaPage },
     ];
 
   }
