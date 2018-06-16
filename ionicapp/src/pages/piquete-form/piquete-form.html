@@ -31,18 +31,9 @@
 
   <ion-list>
     <ion-item>
-      <ion-label>Tipo</ion-label>
-      <ion-select [(ngModel)]="dadosDoForm.tipo">
-        <ion-option value="extensivo">Extensivo</ion-option>
-        <ion-option value="intensivo">Intensivo</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    <ion-item>
       <ion-label>Módulo</ion-label>
       <ion-select [(ngModel)]="dadosDoForm.moduloId">
+          <ion-option value="" selected>Nenhum</ion-option>
         <ion-option *ngFor="let item of listaModulos" value="{{item.id}}">{{ item.descricao }}</ion-option>
       </ion-select>
     </ion-item>
@@ -50,9 +41,20 @@
 
   <ion-list>
     <ion-item>
+      <ion-label>Tipo</ion-label>
+      <ion-select [(ngModel)]="dadosDoForm.tipo">
+        <ion-option value="extensivo" selected>Extensivo</ion-option>
+        <ion-option value="intensivo">Intensivo</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  
+
+  <ion-list>
+    <ion-item>
       <ion-label>Tipo de capim</ion-label>
       <ion-select [(ngModel)]="dadosDoForm.tipoCapim">
-        <ion-option value="mombaca">Mombaça</ion-option>
+        <ion-option value="mombaca" selected>Mombaça</ion-option>
         <ion-option value="braqueara">Braqueara</ion-option>
         <ion-option value="quicuia">Quicuia</ion-option>
       </ion-select>
@@ -63,6 +65,7 @@
     <ion-item>
       <ion-label>Status</ion-label>
       <ion-select [(ngModel)]="dadosDoForm.tipoRecuperacao">
+        <ion-option value="pronto" selected>Pronto</ion-option>
         <ion-option value="recuperacao">Recuperação</ion-option>
         <ion-option value="uso">Uso</ion-option>
         <ion-option value="ocupado">Ocupado</ion-option>
