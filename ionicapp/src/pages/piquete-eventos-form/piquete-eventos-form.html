@@ -10,41 +10,48 @@
       <button ion-button icon-only (click)="excluir()" *ngIf="dadosDoForm.id">
         <ion-icon name="trash"></ion-icon>
       </button>
+      <button ion-button icon-only (click)="fechar()">
+        <ion-icon name="close"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-<ion-content padding>
-
-  <ion-item>
-    <ion-icon color="primary" name="cube" item-start></ion-icon>
-    <ion-label stacked>Descrição</ion-label>
-    <ion-input id="nome" type="text" [(ngModel)]="dadosDoForm.nome"></ion-input>
-  </ion-item>
+<ion-content>
 
   <ion-list>
+
     <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
       <ion-label>Tipo de evento</ion-label>
       <ion-select [(ngModel)]="dadosDoForm.tipo">
+        <ion-option value="manutencao" selected>Manutenção</ion-option>
         <ion-option value="queimada">Queimada</ion-option>
         <ion-option value="praga">Praga</ion-option>
-        <ion-option value="manutencao">Manutenção</ion-option>
       </ion-select>
     </ion-item>
+
+    <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
+      <ion-label stacked>Descrição</ion-label>
+      <ion-input id="nome" type="text" [(ngModel)]="dadosDoForm.nome" placeholder="O que você quer registrar?"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="dadosDoForm.tipo != 'manutencao'">
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
+      <ion-label>Data</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="D MMM YYYY HH:mm" cancelText="Cancelar" doneText="OK" max="2020-12-31"
+        [(ngModel)]="dadosDoForm.data" minuteValues="0,15,30,45"></ion-datetime>
+    </ion-item>
+
+    <ion-item *ngIf="dadosDoForm.tipo == 'manutencao'">
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
+      <ion-label>Previsão</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="D MMM YYYY HH:mm" cancelText="Cancelar" doneText="OK" max="2020-12-31"
+        [(ngModel)]="dadosDoForm.previsao" minuteValues="0,15,30,45"></ion-datetime>
+    </ion-item>
+
   </ion-list>
-
-  <ion-item>
-    <ion-label>Data acontecimento</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="D MMM YYYY HH:mm" cancelText="Cancelar" doneText="OK" max="2020-12-31"
-      [(ngModel)]="dadosDoForm.data" minuteValues="0,15,30,45"></ion-datetime>
-  </ion-item>
-
-  <ion-item>
-    <ion-label>Data previsão</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="D MMM YYYY HH:mm" cancelText="Cancelar" doneText="OK" max="2020-12-31"
-      [(ngModel)]="dadosDoForm.dataPrevisao" minuteValues="0,15,30,45"></ion-datetime>
-
-  </ion-item>
 
 </ion-content>

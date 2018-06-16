@@ -13,18 +13,20 @@ export class PiqueteEventosFormPage {
   public piquete: Piquete = null;
   public callback: any = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public API: PiqueteEventosApi,
-    public viewCtrl: ViewController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public API: PiqueteEventosApi,
+    public viewCtrl: ViewController
+  ) {
     let _item = navParams.get('item');
     if (_item) this.dadosDoForm = Object.assign(new PiqueteEventos, _item);
     let _piquete = navParams.get('piquete');
     if (_piquete) this.piquete = Object.assign(new PiqueteEventos, _piquete);
     let _callback = navParams.get('callback');
     if (_callback) this.callback = _callback;
-  }
 
-  ionViewDidLoad() {
-
+    this.dadosDoForm.tipo = 'manutencao';
   }
 
   salvar() {
@@ -40,7 +42,7 @@ export class PiqueteEventosFormPage {
       this.API.upsert(this.dadosDoForm).subscribe(
         (data: PiqueteEventos) => {
           if (this.callback) {
-            this.callback().then(() => { this.viewCtrl.dismiss(); });
+            this.callback().then(() => { this.viewCtrl.dismiss().catch(() => {}); });
           }
           this.navCtrl.pop();
         }
@@ -57,11 +59,16 @@ export class PiqueteEventosFormPage {
         () => {
           if (this.callback) {
             this.callback().then(() => { this.viewCtrl.dismiss(); });
+          }else{
+            this.navCtrl.pop();
           }
-          this.navCtrl.pop();
         }
       );
     }
+  }
+
+  fechar(){
+    this.navCtrl.pop();
   }
 
 }
