@@ -40,12 +40,15 @@ export class FinanceiroMovimentacaoListaPage {
     )
   }
 
-  abrir(entrada: boolean, item: FinanceiroMovimentacao = null) {
-    if (item || entrada)
-      this.navCtrl.push('FinanceiroMovimentacaoReceberFormPage', { item: item });
-    else if (item || entrada)
-      this.navCtrl.push('FinanceiroMovimentacaoPagarFormPage', { item: item });
-    else
-      this.navCtrl.push('FinanceiroMovimentacaoFormPage');
+  abrir(item: FinanceiroMovimentacao = null, entrada: boolean) {
+    
+    if (item && entrada)
+      this.navCtrl.push('FinanceiroMovimentacaoReceberFormPage', { item: item });      
+    else if (!item && entrada)      
+      this.navCtrl.push('FinanceiroMovimentacaoReceberFormPage');      
+    else if (!item && !entrada)    
+      this.navCtrl.push('FinanceiroMovimentacaoPagarFormPage', { item: item });        
+    else       
+      this.navCtrl.push('FinanceiroMovimentacaoPagarFormPage');
   }
 }

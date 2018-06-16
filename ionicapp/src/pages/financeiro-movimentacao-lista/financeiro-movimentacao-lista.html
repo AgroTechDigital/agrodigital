@@ -8,12 +8,12 @@
     </button>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="abrir(1)">
+      <button ion-button icon-only (click)="abrir(true)">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons end>
-      <button ion-button icon-only (click)="abrir(0)">
+      <button ion-button icon-only (click)="abrir(false)">
         <ion-icon name="remove"></ion-icon>
       </button>
     </ion-buttons>
@@ -28,7 +28,7 @@
 <ion-content>
 
   <ion-list>
-    <ion-item text-wrap *ngFor="let item of lista" (click)="abrir(null,item)">
+    <ion-item text-wrap *ngFor="let item of lista" (click)="abrir(true,item)">
       <ion-avatar item-start>
         <img src="assets/imgs/img-pasto.jpg">
       </ion-avatar>
