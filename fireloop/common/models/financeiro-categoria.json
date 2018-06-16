@@ -6,22 +6,9 @@
     "validateUpsert": true
   },
   "mixins": {
-    "FireLoop": true,
     "TimeStamp": {
       "required": false
-    },
-    "Stats": [
-      {
-        "method": "stats",
-        "endpoint": "/stats",
-        "description": "Statistical information for financeiroCategoria registers.",
-        "type": "model",
-        "count": {
-          "on": "createdAt",
-          "by": "index"
-        }
-      }
-    ]
+    }   
   },
   "properties": {
     "descricao": {
