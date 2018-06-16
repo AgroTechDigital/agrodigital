@@ -29,10 +29,16 @@
         <ion-input id="raca" type="text" [(ngModel)]="dadosDoForm.raca"></ion-input>
       </ion-item> 
         
+    <ion-item>
+        <ion-icon color="primary" name="cube" item-start></ion-icon>
+        <ion-label stacked>Categoria</ion-label>
+        <ion-input id="categoria" type="text" [(ngModel)]="dadosDoForm.categoria"></ion-input>
+      </ion-item> 
+      
       <ion-list>
           <ion-item>
-            <ion-label color="primary" name="cube" item-start>Categoria</ion-label>
-            <ion-select [(ngModel)]="dadosDoForm.categoria">
+            <ion-label color="primary" name="cube" item-start>Tipo</ion-label>
+            <ion-select [(ngModel)]="dadosDoForm.tipo">
               <ion-option value="Bovino">Bovino</ion-option>
               <ion-option value="Equino">Equino</ion-option>                            
               <ion-option value="Bubalino">Bubalino</ion-option>                            
@@ -91,18 +97,18 @@
   
   <ion-list>
     <ion-item>
-      <ion-label color="primary" name="cube" item-start>Tipo de animal</ion-label>
-      <ion-select [(ngModel)]="dadosDoForm.tipo">
-        <ion-option value="Touro">Touro</ion-option>
-          <ion-option value="Vaca">Vaca</ion-option>
-          <ion-option value="Menos 1 ano">Menos de 1 ano</ion-option>
-          <ion-option value="1-2 Anos">1-2 anos</ion-option>
-          <ion-option value="2-3 Anos">2-3 anos</ion-option>
-          <ion-option value="Serviço">Serviço</ion-option>
-          <ion-option value="Equídios">Equídios</ion-option>
-          <ion-option value="Bovinos">Bovinos</ion-option>
-          <ion-option value="Ouvino">Ovino</ion-option>
-          <ion-option value="Caprino adulto">Caprino adulto</ion-option>
+      <ion-label color="primary" name="cube" item-start>Unidade animal</ion-label>
+      <ion-select [(ngModel)]="dadosDoForm.unidadeAnimal">
+        <ion-option value="1,25">Touro</ion-option>
+          <ion-option value="1,00">Vaca</ion-option>
+          <ion-option value="0,25">Menos de 1 ano</ion-option>
+          <ion-option value="0,50">1-2 anos</ion-option>
+          <ion-option value="0,75">2-3 anos</ion-option>
+          <ion-option value="1,50">Serviço</ion-option>
+          <ion-option value="1,50">Equídios</ion-option>
+          <ion-option value="1,50">Bovinos</ion-option>
+          <ion-option value="0,25">Ovino</ion-option>
+          <ion-option value="0,25">Caprino adulto</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>

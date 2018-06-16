@@ -66,7 +66,7 @@ void GRfid::setLoop()
      _content.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
 
-  _content.toUpperCase();
+  _content.toUpperCase().trim();
 
   if(_content.length() > 0){
 

@@ -30,7 +30,7 @@ export class AnimalListaPage {
 
     this.API.find({
       where: {
-        descricao: { like: this.termoBuscado, options: 'i' }
+        categoria: { like: this.termoBuscado, options: 'i' }
       }
     }).subscribe(
       (retorno: Animal[]) => {

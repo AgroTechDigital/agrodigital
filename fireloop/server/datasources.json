@@ -9,7 +9,7 @@
     "url": "mongodb://hackathon:123Mudar@cluster0-shard-00-00-jpkqg.mongodb.net:27017,cluster0-shard-00-01-jpkqg.mongodb.net:27017,cluster0-shard-00-02-jpkqg.mongodb.net:27017/agrodigital?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true",
     "database": "",
     "password": "",
-    "name": "db",
+    "name": "db-online",
     "user": "",
     "connector": "mongodb"
   },
