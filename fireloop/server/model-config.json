@@ -38,5 +38,9 @@
   "modulo": {
     "dataSource": "db",
     "public": true
+  },
+  "piquete": {
+    "dataSource": "db",
+    "public": true
   }
 }

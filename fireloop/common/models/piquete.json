@@ -1,0 +1,72 @@
+{
+  "name": "piquete",
+  "plural": "piquetes",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "codigo": {
+      "type": "string"
+    },
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "coordenadas": {
+      "type": [
+        "geopoint"
+      ]
+    },
+    "area": {
+      "type": "number"
+    },
+    "tipo": {
+      "type": "string",
+      "required": true,
+      "default": "extensivo"
+    },
+    "tipoCapim": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "required": true,
+      "default": "recuperacao"
+    },
+    "tempoRecuperacao": {
+      "type": "number"
+    },
+    "capacidadeUa": {
+      "type": "number"
+    },
+    "historicoUa": {
+      "type": [
+        "object"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {},
+  "mixins": {
+    "FireLoop": true,
+    "TimeStamp": {
+      "required": false
+    },
+    "Stats": [
+      {
+        "method": "stats",
+        "endpoint": "/stats",
+        "description": "Statistical information for piquete registers.",
+        "type": "model",
+        "count": {
+          "on": "createdAt",
+          "by": "index"
+        }
+      }
+    ]
+  }
+}

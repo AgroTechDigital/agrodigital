@@ -4,7 +4,7 @@ declare var Object: any;
 export interface ModuloInterface {
   "descricao": string;
   "quantidade": number;
-  "id"?: number;
+  "id"?: any;
   "createdAt"?: Date;
   "updatedAt"?: Date;
 }
@@ -12,7 +12,7 @@ export interface ModuloInterface {
 export class Modulo implements ModuloInterface {
   "descricao": string;
   "quantidade": number;
-  "id": number;
+  "id": any;
   "createdAt": Date;
   "updatedAt": Date;
   constructor(data?: ModuloInterface) {
@@ -59,7 +59,7 @@ export class Modulo implements ModuloInterface {
         },
         "id": {
           name: 'id',
-          type: 'number'
+          type: 'any'
         },
         "createdAt": {
           name: 'createdAt',
