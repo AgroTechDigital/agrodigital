@@ -1,4 +1,7 @@
 /* tslint:disable */
+import {
+  Animal
+} from '../index';
 
 declare var Object: any;
 export interface ManejoInterface {
@@ -10,6 +13,7 @@ export interface ManejoInterface {
   "id"?: any;
   "createdAt"?: Date;
   "updatedAt"?: Date;
+  animais?: Animal[];
 }
 
 export class Manejo implements ManejoInterface {
@@ -21,6 +25,7 @@ export class Manejo implements ManejoInterface {
   "id": any;
   "createdAt": Date;
   "updatedAt": Date;
+  animais: Animal[];
   constructor(data?: ManejoInterface) {
     Object.assign(this, data);
   }
@@ -89,6 +94,14 @@ export class Manejo implements ManejoInterface {
         },
       },
       relations: {
+        animais: {
+          name: 'animais',
+          type: 'Animal[]',
+          model: 'Animal',
+          relationType: 'hasMany',
+                  keyFrom: 'id',
+          keyTo: 'manejoId'
+        },
       }
     }
   }

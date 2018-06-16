@@ -6,6 +6,7 @@ import { Piquete } from '../../models/Piquete';
 import { PiqueteEventos } from '../../models/PiqueteEventos';
 import { Manejo } from '../../models/Manejo';
 import { Animal } from '../../models/Animal';
+import { AnimalEventos } from '../../models/AnimalEventos';
 
 export interface Models { [name: string]: any }
 
@@ -19,6 +20,7 @@ export class SDKModels {
     PiqueteEventos: PiqueteEventos,
     Manejo: Manejo,
     Animal: Animal,
+    AnimalEventos: AnimalEventos,
     
   };
 

@@ -54,6 +54,7 @@ import { PiqueteApi } from './services/custom/Piquete';
 import { PiqueteEventosApi } from './services/custom/PiqueteEventos';
 import { ManejoApi } from './services/custom/Manejo';
 import { AnimalApi } from './services/custom/Animal';
+import { AnimalEventosApi } from './services/custom/AnimalEventos';
 /**
 * @module SDKBrowserModule
 * @description
@@ -90,6 +91,7 @@ export class SDKBrowserModule {
         PiqueteEventosApi,
         ManejoApi,
         AnimalApi,
+        AnimalEventosApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }
