@@ -58,5 +58,13 @@
   "animalEventos": {
     "dataSource": "db",
     "public": true
+  },
+  "financeiroCategoria": {
+    "dataSource": "db",
+    "public": true
+  },
+  "financeiroMovimentacao": {
+    "dataSource": "db",
+    "public": true
   }
 }

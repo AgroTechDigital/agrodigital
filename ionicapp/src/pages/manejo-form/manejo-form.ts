@@ -35,7 +35,7 @@ export class ManejoFormPage {
       }
     )
   }
-  
+
   soma(item: any, sexo: any) {
     if (sexo == 'F')
       item.qtdFemea = item.qtdFemea + 1;
@@ -71,7 +71,20 @@ export class ManejoFormPage {
   salvar() {
 
     try {
-      //if (!this.dadosDoForm.descricao) throw 'Informe uma descrição';
+      if (!this.dadosDoForm.destinoId) throw 'informw o destino do manejo!';
+      //recupera a origem e o destino
+      let where = {
+        or: [
+          { id: this.dadosDoForm.destinoId }
+        ]
+      }
+      if (this.dadosDoForm.origemId) {
+        where.or.push({ id: this.dadosDoForm.origemId });
+      }
+
+      this.piqueteApi.find({ where: where }).subscribe((r: Piquete[]) => {
+
+      });
 
       this.API.upsert(this.dadosDoForm).subscribe(
         (data: Manejo) => {

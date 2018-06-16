@@ -55,6 +55,8 @@ import { PiqueteEventosApi } from './services/custom/PiqueteEventos';
 import { ManejoApi } from './services/custom/Manejo';
 import { AnimalApi } from './services/custom/Animal';
 import { AnimalEventosApi } from './services/custom/AnimalEventos';
+import { FinanceiroCategoriaApi } from './services/custom/FinanceiroCategoria';
+import { FinanceiroMovimentacaoApi } from './services/custom/FinanceiroMovimentacao';
 /**
 * @module SDKBrowserModule
 * @description
@@ -92,6 +94,8 @@ export class SDKBrowserModule {
         ManejoApi,
         AnimalApi,
         AnimalEventosApi,
+        FinanceiroCategoriaApi,
+        FinanceiroMovimentacaoApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

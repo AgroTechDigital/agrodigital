@@ -6,5 +6,7 @@ export * from './PiqueteEventos';
 export * from './Manejo';
 export * from './Animal';
 export * from './AnimalEventos';
+export * from './FinanceiroCategoria';
+export * from './FinanceiroMovimentacao';
 export * from './BaseModels';
 export * from './FireLoopRef';

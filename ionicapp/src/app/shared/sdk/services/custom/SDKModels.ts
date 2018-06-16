@@ -7,6 +7,8 @@ import { PiqueteEventos } from '../../models/PiqueteEventos';
 import { Manejo } from '../../models/Manejo';
 import { Animal } from '../../models/Animal';
 import { AnimalEventos } from '../../models/AnimalEventos';
+import { FinanceiroCategoria } from '../../models/FinanceiroCategoria';
+import { FinanceiroMovimentacao } from '../../models/FinanceiroMovimentacao';
 
 export interface Models { [name: string]: any }
 
@@ -21,6 +23,8 @@ export class SDKModels {
     Manejo: Manejo,
     Animal: Animal,
     AnimalEventos: AnimalEventos,
+    FinanceiroCategoria: FinanceiroCategoria,
+    FinanceiroMovimentacao: FinanceiroMovimentacao,
     
   };
 

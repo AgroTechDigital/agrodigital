@@ -1,0 +1,48 @@
+{
+  "name": "financeiroMovimentacao",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "TimeStamp": {
+      "required": false
+    }    
+  },
+  "properties": {
+    "descricao": {
+      "type": "string"
+    },
+    "valor": {
+      "type": "number"
+    },
+    "dataMovimentacao": {
+      "type": "date"
+    },
+    "debito": {
+      "type": "boolean"
+    },
+    "custoFixo": {
+      "type": "boolean"
+    },
+    "recorente": {
+      "type": "boolean"
+    },
+    "tags": {
+      "type": [
+        "string"
+      ]
+    }
+  },
+  "validations": [],
+  "relations": {
+    "categoria": {
+      "type": "belongsTo",
+      "model": "financeiroCategoria",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
