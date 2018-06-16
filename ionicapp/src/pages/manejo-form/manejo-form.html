@@ -1,18 +1,26 @@
-<!--
-  Generated template for the ManejoFormPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>manejoForm</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Manejo</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="salvar()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="excluir()" *ngIf="dadosDoForm.id">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+
+  <ion-item>
+    <ion-icon color="primary" name="cube" item-start></ion-icon>
+    <ion-label stacked>Descrição</ion-label>
+    <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.descricao"></ion-input>
+  </ion-item> 
 
 </ion-content>
