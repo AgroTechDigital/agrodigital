@@ -23,15 +23,13 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Animais', component: 'AnimalListaPage'},
-      { title: 'Eventos dos animais', component: 'AnimalEventosListaPage'},
       { title: 'Módulos', component: 'ModuloListaPage'},
-      { title: 'Piquetes', component: 'PiqueteListaPage'},
-      { title: 'Eventos dos piquetes', component: 'PiqueteEventosListaPage'},
+      { title: 'Piquetes', component: PiqueteListaPage },
       { title: 'Manejo', component: 'ManejoListaPage'},
-      { title: 'Cliente', component: 'ClienteListaPage'},
-      { title: 'Compra', component: 'CompraListaPage'},
-      { title: 'Venda', component: 'VendaListaPage'},
-      { title: 'Fornecedor', component: 'FornecedorListaPage'},
+      // { title: 'Cliente', component: 'ClienteListaPage'},
+      // { title: 'Compra', component: 'CompraListaPage'},
+      // { title: 'Venda', component: 'VendaListaPage'},
+      // { title: 'Fornecedor', component: 'FornecedorListaPage'},
     ];
 
   }

@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ManejoFormPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { Manejo, ManejoApi } from '../../app/shared/sdk';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,35 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ManejoFormPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public dadosDoForm: Manejo = new Manejo();
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public API: ManejoApi) {
+    let item = navParams.get('item');
+    if (item) this.dadosDoForm = Object.assign(new Manejo, item);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ManejoFormPage');
+
+  }
+
+  salvar() {
+
+    try {
+      //if (!this.dadosDoForm.descricao) throw 'Informe uma descrição';
+
+      this.API.upsert(this.dadosDoForm).subscribe(
+        (data: Manejo) => {
+          this.navCtrl.pop();
+        }
+      )
+
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  excluir() {
+
   }
 
 }
