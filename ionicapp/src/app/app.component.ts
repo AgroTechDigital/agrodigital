@@ -18,7 +18,7 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-    LoopBackConfig.setBaseURL('http://192.168.1.178:3000');
+    LoopBackConfig.setBaseURL('http://192.168.1.20:3000');
 
     // used for an example of ngFor and navigation
     this.pages = [
