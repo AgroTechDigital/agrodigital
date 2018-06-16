@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PiqueteEventos, PiqueteEventosApi } from '../../app/shared/sdk';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { PiqueteEventos, PiqueteEventosApi, Piquete } from '../../app/shared/sdk';
 
 @IonicPage()
 @Component({
@@ -10,10 +10,17 @@ import { PiqueteEventos, PiqueteEventosApi } from '../../app/shared/sdk';
 export class PiqueteEventosFormPage {
 
   public dadosDoForm: PiqueteEventos = new PiqueteEventos();
+  public piquete: Piquete = null;
+  public callback: any = null;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public API: PiqueteEventosApi) {
-    let item = navParams.get('item');
-    if (item) this.dadosDoForm = Object.assign(new PiqueteEventos, item);
+  constructor(public navCtrl: NavController, public navParams: NavParams, public API: PiqueteEventosApi,
+    public viewCtrl: ViewController) {
+    let _item = navParams.get('item');
+    if (_item) this.dadosDoForm = Object.assign(new PiqueteEventos, _item);
+    let _piquete = navParams.get('piquete');
+    if (_piquete) this.piquete = Object.assign(new PiqueteEventos, _piquete);
+    let _callback = navParams.get('callback');
+    if (_callback) this.callback = _callback;
   }
 
   ionViewDidLoad() {
@@ -26,8 +33,15 @@ export class PiqueteEventosFormPage {
       if (!this.dadosDoForm.nome) throw 'Informe uma nome do evento';
       if (!this.dadosDoForm.tipo) throw 'Informe o tipo de evento';
 
+      if (this.piquete) {
+        this.dadosDoForm.piqueteId = this.piquete.id;
+      }
+
       this.API.upsert(this.dadosDoForm).subscribe(
-        (modulo: PiqueteEventos) => {
+        (data: PiqueteEventos) => {
+          if (this.callback) {
+            this.callback().then(() => { this.viewCtrl.dismiss(); });
+          }
           this.navCtrl.pop();
         }
       )
@@ -38,7 +52,16 @@ export class PiqueteEventosFormPage {
   }
 
   excluir() {
-
+    if (confirm('deseja realmente excluir?')) {
+      this.API.deleteById(this.dadosDoForm.id).subscribe(
+        () => {
+          if (this.callback) {
+            this.callback().then(() => { this.viewCtrl.dismiss(); });
+          }
+          this.navCtrl.pop();
+        }
+      );
+    }
   }
 
 }

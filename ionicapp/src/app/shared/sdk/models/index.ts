@@ -5,5 +5,6 @@ export * from './Piquete';
 export * from './PiqueteEventos';
 export * from './Manejo';
 export * from './Animal';
+export * from './AnimalEventos';
 export * from './BaseModels';
 export * from './FireLoopRef';
