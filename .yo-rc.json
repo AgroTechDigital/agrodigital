@@ -5,7 +5,19 @@
       "fireloop": {
         "path": "./fireloop",
         "type": "server"
+      },
+      "ionicapp": {
+        "path": "./ionicapp",
+        "type": "ng2ionic",
+        "name": "ionicapp",
+        "sdkPath": "ionicapp\\src\\app\\shared\\sdk"
       }
+    },
+    "promptValues": {
+      "sdkFeatures": [
+        "Enable PubSub + IO + FireLoop functionality",
+        "Generate ONLY FireLoop SDK + Auth Services"
+      ]
     }
   }
 }

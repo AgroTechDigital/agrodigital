@@ -1,0 +1,29 @@
+{
+  "name": "modulo",
+  "plural": "modelos",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "descricao": {
+      "type": "string",
+      "required": true
+    },
+    "quantidade": {
+      "type": "number",
+      "required": true,
+      "default": 0
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {},
+  "mixins": {   
+    "TimeStamp": {
+      "required": false
+    }    
+  }
+}
