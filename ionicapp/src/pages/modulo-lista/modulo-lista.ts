@@ -33,9 +33,9 @@ export class ModuloListaPage {
   buscar() {
 
     this.API.find({
-      // where: {
-      //   descricao: { like: this.termoBuscado, options: 'i' }
-      // }
+      where: {
+        descricao: { like: this.termoBuscado, options: 'i' }
+      }
     }).subscribe(
       (data: Modulo[]) => {
         this.lista = data;
