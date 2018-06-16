@@ -1,0 +1,52 @@
+{
+  "name": "piqueteEventos",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "FireLoop": true,
+    "TimeStamp": {
+      "required": false
+    },
+    "Stats": [
+      {
+        "method": "stats",
+        "endpoint": "/stats",
+        "description": "Statistical information for piqueteEventos registers.",
+        "type": "model",
+        "count": {
+          "on": "createdAt",
+          "by": "index"
+        }
+      }
+    ]
+  },
+  "properties": {
+    "tipo": {
+      "type": "string",
+      "required": true
+    },
+    "nome": {
+      "type": "string",
+      "required": true
+    },
+    "data": {
+      "type": "date"
+    },
+    "agendamento": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "piquete": {
+      "type": "belongsTo",
+      "model": "piquete",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

@@ -1,6 +1,6 @@
 {
-  "name": "modulo",
-  "plural": "modelos",
+  "name": "manejo",
+  "plural": "manejos",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -12,24 +12,29 @@
     }
   },
   "properties": {
-    "descricao": {
+    "data": {
+      "type": "date",
+      "required": true
+    },
+    "tempoPrevisto": {
+      "type": "number",
+      "default": 0
+    },
+    "estacao": {
       "type": "string",
       "required": true
     },
-    "quantidade": {
-      "type": "number",
-      "required": true,
-      "default": 0
+    "tempoRecuperacao": {
+      "type": "date"
+    },
+    "animaisSimplificado": {
+      "type": [
+        "object"
+      ]
     }
   },
   "validations": [],
-  "relations": {
-    "piquetes": {
-      "type": "hasMany",
-      "model": "piquete",
-      "foreignKey": ""
-    }
-  },
+  "relations": {},
   "acls": [],
   "methods": {}
 }
