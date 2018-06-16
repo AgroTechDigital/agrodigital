@@ -26,7 +26,7 @@ export class ModuloFormPage {
       if (!this.dadosDoForm.descricao) throw 'Informe uma descrição';
 
       this.API.upsert(this.dadosDoForm).subscribe(
-        (modulo: Modulo) => {
+        (retorno: Modulo) => {
           this.navCtrl.pop();
         }
       )

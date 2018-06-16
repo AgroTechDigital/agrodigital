@@ -26,8 +26,8 @@ export class PiqueteFormPage {
   ionViewDidEnter() {
     //Buscar Todos os Modulos
     this.moduloApi.find().subscribe(
-      (modulos: Modulo[]) => {
-        this.listaModulos = modulos;
+      (retorno: Modulo[]) => {
+        this.listaModulos = retorno;
       }
     )
 
@@ -67,7 +67,7 @@ export class PiqueteFormPage {
       if (!this.dadosDoForm.moduloId) throw 'Selecione algum módulo';
 
       this.API.upsert(this.dadosDoForm).subscribe(
-        (modulo: Piquete) => {
+        (retorno: Piquete) => {
           this.navCtrl.pop();
         }
       )
