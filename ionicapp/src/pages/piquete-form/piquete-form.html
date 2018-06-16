@@ -41,6 +41,15 @@
 
   <ion-list>
     <ion-item>
+      <ion-label>Módulo</ion-label>
+      <ion-select [(ngModel)]="dadosDoForm.moduloId">
+        <ion-option *ngFor="let item of listaModulos" value="{{item.id}}">{{ item.descricao }}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
       <ion-label>Tipo de capim</ion-label>
       <ion-select [(ngModel)]="dadosDoForm.tipoCapim">
         <ion-option value="mombaca">Mombaça</ion-option>

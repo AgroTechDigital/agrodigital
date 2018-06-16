@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Piquete, PiqueteApi } from '../../app/shared/sdk';
+import { Piquete, PiqueteApi, Modulo, ModuloApi } from '../../app/shared/sdk';
 
 @IonicPage()
 @Component({
@@ -10,20 +10,26 @@ import { Piquete, PiqueteApi } from '../../app/shared/sdk';
 export class PiqueteFormPage {
 
   public dadosDoForm: Piquete = new Piquete();
+  public listaModulos: Modulo[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public API: PiqueteApi) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public API: PiqueteApi, public moduloApi: ModuloApi) {
     let item = navParams.get('item');
     if (item) this.dadosDoForm = Object.assign(new Piquete, item);
   }
 
-  ionViewDidLoad() {
-
+  ionViewDidEnter() {
+    this.moduloApi.find().subscribe(
+      (modulos: Modulo[]) => {
+        this.listaModulos = modulos;
+      }
+    )
   }
 
   salvar() {
 
     try {
-      //if (!this.dadosDoForm.nome) throw 'Informe uma descrição';
+      if (!this.dadosDoForm.nome) throw 'Informe um nome';
+      if (!this.dadosDoForm.moduloId) throw 'Selecione algum módulo';
 
       this.API.upsert(this.dadosDoForm).subscribe(
         (modulo: Piquete) => {
