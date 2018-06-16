@@ -1,0 +1,54 @@
+{
+  "name": "animal",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "TimeStamp": {
+      "required": false
+    }
+  },
+  "properties": {
+    "tipo": {
+      "type": "string",
+      "required": true,
+      "default": "bovino"
+    },
+    "raca": {
+      "type": "string",
+      "required": true
+    },
+    "categoria": {
+      "type": "string",
+      "required": true
+    },
+    "sexo": {
+      "type": "boolean",
+      "required": true
+    },
+    "etiqueta": {
+      "type": "string"
+    },
+    "origem": {
+      "type": "string"
+    },
+    "finalidade": {
+      "type": "string"
+    },
+    "nascimento": {
+      "type": "date"
+    },
+    "peso": {
+      "type": "number"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -12,15 +12,5 @@
     "name": "db",
     "user": "",
     "connector": "mongodb"
-  },
-  "db-mongo": {
-    "host": "",
-    "port": 0,
-    "url": "mongodb://localhost:27017/agrodigital",
-    "database": "",
-    "password": "",
-    "name": "db-mongo",
-    "user": "",
-    "connector": "mongodb"
   }
 }

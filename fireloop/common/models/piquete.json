@@ -6,6 +6,11 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "TimeStamp": {
+      "required": false
+    }
+  },
   "properties": {
     "codigo": {
       "type": "string"
@@ -48,25 +53,21 @@
     }
   },
   "validations": [],
-  "relations": {},
-  "acls": [],
-  "methods": {},
-  "mixins": {
-    "FireLoop": true,
-    "TimeStamp": {
-      "required": false
-    },
-    "Stats": [
-      {
-        "method": "stats",
-        "endpoint": "/stats",
-        "description": "Statistical information for piquete registers.",
-        "type": "model",
-        "count": {
-          "on": "createdAt",
-          "by": "index"
-        }
+  "relations": {
+    "modulo": {
+      "type": "belongsTo",
+      "model": "modulo",
+      "foreignKey": "",
+      "options": {
+        "nestRemoting": true
       }
-    ]
-  }
+    },
+    "eventos": {
+      "type": "hasMany",
+      "model": "piqueteEventos",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
 }

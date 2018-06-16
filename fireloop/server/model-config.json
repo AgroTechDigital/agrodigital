@@ -42,5 +42,17 @@
   "piquete": {
     "dataSource": "db",
     "public": true
+  },
+  "piqueteEventos": {
+    "dataSource": "db",
+    "public": true
+  },
+  "manejo": {
+    "dataSource": "db",
+    "public": true
+  },
+  "animal": {
+    "dataSource": "db",
+    "public": true
   }
 }
