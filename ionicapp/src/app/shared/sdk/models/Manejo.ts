@@ -1,5 +1,6 @@
 /* tslint:disable */
 import {
+  Piquete,
   Animal
 } from '../index';
 
@@ -10,9 +11,15 @@ export interface ManejoInterface {
   "estacao": string;
   "tempoRecuperacao"?: Date;
   "animaisSimplificado"?: Array<any>;
+  "cabecas"?: number;
+  "UA"?: number;
   "id"?: any;
+  "origemId"?: any;
+  "destinoId"?: any;
   "createdAt"?: Date;
   "updatedAt"?: Date;
+  origem?: Piquete;
+  destino?: Piquete;
   animais?: Animal[];
 }
 
@@ -22,9 +29,15 @@ export class Manejo implements ManejoInterface {
   "estacao": string;
   "tempoRecuperacao": Date;
   "animaisSimplificado": Array<any>;
+  "cabecas": number;
+  "UA": number;
   "id": any;
+  "origemId": any;
+  "destinoId": any;
   "createdAt": Date;
   "updatedAt": Date;
+  origem: Piquete;
+  destino: Piquete;
   animais: Animal[];
   constructor(data?: ManejoInterface) {
     Object.assign(this, data);
@@ -80,8 +93,24 @@ export class Manejo implements ManejoInterface {
           name: 'animaisSimplificado',
           type: 'Array&lt;any&gt;'
         },
+        "cabecas": {
+          name: 'cabecas',
+          type: 'number'
+        },
+        "UA": {
+          name: 'UA',
+          type: 'number'
+        },
         "id": {
           name: 'id',
+          type: 'any'
+        },
+        "origemId": {
+          name: 'origemId',
+          type: 'any'
+        },
+        "destinoId": {
+          name: 'destinoId',
           type: 'any'
         },
         "createdAt": {
@@ -94,6 +123,22 @@ export class Manejo implements ManejoInterface {
         },
       },
       relations: {
+        origem: {
+          name: 'origem',
+          type: 'Piquete',
+          model: 'Piquete',
+          relationType: 'belongsTo',
+                  keyFrom: 'origemId',
+          keyTo: 'id'
+        },
+        destino: {
+          name: 'destino',
+          type: 'Piquete',
+          model: 'Piquete',
+          relationType: 'belongsTo',
+                  keyFrom: 'destinoId',
+          keyTo: 'id'
+        },
         animais: {
           name: 'animais',
           type: 'Animal[]',

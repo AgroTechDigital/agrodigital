@@ -25,7 +25,7 @@ export class MyApp {
       { title: 'Animais', component: 'AnimalListaPage'},
       { title: 'Módulos', component: 'ModuloListaPage'},
       { title: 'Piquetes', component: PiqueteListaPage },
-      { title: 'Manejo', component: 'ManejoListaPage'},
+      { title: 'Manejo', component: 'ManejoFormPage'},
       // { title: 'Cliente', component: 'ClienteListaPage'},
       // { title: 'Compra', component: 'CompraListaPage'},
       // { title: 'Venda', component: 'VendaListaPage'},
