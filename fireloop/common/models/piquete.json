@@ -40,10 +40,21 @@
       "required": true,
       "default": "recuperacao"
     },
+    "animaisSimplificado": {
+      "type": [
+        "object"
+      ]
+    },
     "tempoRecuperacao": {
       "type": "number"
     },
     "capacidadeUa": {
+      "type": "number"
+    },
+    "UA": {
+      "type": "number"
+    },
+    "cabecas": {
       "type": "number"
     },
     "historicoUa": {

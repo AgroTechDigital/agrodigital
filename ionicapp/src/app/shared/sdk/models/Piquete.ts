@@ -13,8 +13,11 @@ export interface PiqueteInterface {
   "tipo": string;
   "tipoCapim"?: string;
   "status": string;
+  "animaisSimplificado"?: Array<any>;
   "tempoRecuperacao"?: number;
   "capacidadeUa"?: number;
+  "UA"?: number;
+  "cabecas"?: number;
   "historicoUa"?: Array<any>;
   "id"?: any;
   "moduloId"?: any;
@@ -32,8 +35,11 @@ export class Piquete implements PiqueteInterface {
   "tipo": string;
   "tipoCapim": string;
   "status": string;
+  "animaisSimplificado": Array<any>;
   "tempoRecuperacao": number;
   "capacidadeUa": number;
+  "UA": number;
+  "cabecas": number;
   "historicoUa": Array<any>;
   "id": any;
   "moduloId": any;
@@ -104,12 +110,24 @@ export class Piquete implements PiqueteInterface {
           type: 'string',
           default: 'recuperacao'
         },
+        "animaisSimplificado": {
+          name: 'animaisSimplificado',
+          type: 'Array&lt;any&gt;'
+        },
         "tempoRecuperacao": {
           name: 'tempoRecuperacao',
           type: 'number'
         },
         "capacidadeUa": {
           name: 'capacidadeUa',
+          type: 'number'
+        },
+        "UA": {
+          name: 'UA',
+          type: 'number'
+        },
+        "cabecas": {
+          name: 'cabecas',
           type: 'number'
         },
         "historicoUa": {

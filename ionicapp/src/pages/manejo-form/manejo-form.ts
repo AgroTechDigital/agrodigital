@@ -12,13 +12,15 @@ export class ManejoFormPage {
   public dadosDoForm: Manejo = new Manejo();
   public listaPiquetes: Piquete[] = [];
 
-  public listaTipo: any[] = [
-    { nome: "Touro", UA: 1.25, sexo: 'M', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
-    { nome: "Vaca", UA: 1.0, sexo: 'F', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
-    { nome: "Animais de 2 até 3 anos", UA: 0.75, sexo: '', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
-    { nome: "Animais até 2 Anos", UA: 0.50, sexo: '', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
-    { nome: "Animais até 1 ano", UA: 0.25, sexo: '', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
-  ];
+  public listaTipoBase: any[] = [
+    { id: 1, nome: "Touro", UA: 1.25, sexo: 'M', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
+    { id: 2, nome: "Vaca", UA: 1.0, sexo: 'F', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
+    { id: 3, nome: "Animais de 2 até 3 anos", UA: 0.75, sexo: '', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
+    { id: 4, nome: "Animais até 2 Anos", UA: 0.50, sexo: '', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
+    { id: 5, nome: "Animais até 1 ano", UA: 0.25, sexo: '', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
+  ]
+
+  public listaTipo: any[] = this.listaTipoBase;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public API: ManejoApi,
     public piqueteApi: PiqueteApi,
@@ -74,17 +76,28 @@ export class ManejoFormPage {
       if (!this.dadosDoForm.destinoId) throw 'informw o destino do manejo!';
       //recupera a origem e o destino
       let where = {
-        or: [
-          { id: this.dadosDoForm.destinoId }
-        ]
+        or: []
       }
-      if (this.dadosDoForm.origemId) {
-        where.or.push({ id: this.dadosDoForm.origemId });
+      if (this.dadosDoForm.origemId) where.or.push({ id: this.dadosDoForm.origemId });
+      if (this.dadosDoForm.destinoId) where.or.push({ id: this.dadosDoForm.destinoId });
+
+      if (where.or.length) {
+        this.piqueteApi.find({ where: where }).subscribe((r: Piquete[]) => {
+          let origem: Piquete = null;
+          if (this.dadosDoForm.origemId && r.length > 1) {
+            origem = r.find(x => x.id == this.dadosDoForm.origemId);
+            if (origem.animaisSimplificado) {
+
+            }
+          }
+
+
+
+
+          let destino: Piquete = null;
+          r.find(x => x.id == this.dadosDoForm.destinoId);
+        });
       }
-
-      this.piqueteApi.find({ where: where }).subscribe((r: Piquete[]) => {
-
-      });
 
       this.API.upsert(this.dadosDoForm).subscribe(
         (data: Manejo) => {
