@@ -12,6 +12,7 @@ export class PiqueteFormPage {
   public dadosDoForm: Piquete = new Piquete();
   public listaModulos: Modulo[] = [];
   public listaEventos: PiqueteEventos[] = [];
+  public piqueteSegment: string = 'informacoes';
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public modalCtrl: ModalController,
@@ -43,7 +44,7 @@ export class PiqueteFormPage {
   }
 
   buscarEventos() {
-    this.piqueteEventosApi.find({ where: { piqueteId: this.dadosDoForm.id } }).subscribe(
+    this.piqueteEventosApi.find({ where: { piqueteId: this.dadosDoForm.id }, order: 'createdAt DESC' }).subscribe(
       (data: PiqueteEventos[]) => {
         this.listaEventos = data;
       }

@@ -13,94 +13,131 @@
     </ion-buttons>
   </ion-navbar>
 
+  <ion-toolbar color="primary">
+    <ion-segment [(ngModel)]="piqueteSegment" color="light">
+      <ion-segment-button value="informacoes">
+        Informações
+      </ion-segment-button>
+      <ion-segment-button value="eventos">
+        Eventos
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
-  <ion-item>
-    <ion-icon color="primary" name="cube" item-start></ion-icon>
-    <ion-label stacked>Nome</ion-label>
-    <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.nome"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-icon color="primary" name="cube" item-start></ion-icon>
-    <ion-label stacked>Número</ion-label>
-    <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.numero"></ion-input>
-  </ion-item>
-
-  <ion-list>
-    <ion-item>
-      <ion-label>Módulo</ion-label>
-      <ion-select [(ngModel)]="dadosDoForm.moduloId">
-        <ion-option value="" selected>Nenhum</ion-option>
-        <ion-option *ngFor="let item of listaModulos" value="{{item.id}}">{{ item.descricao }}</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    <ion-item>
-      <ion-label>Tipo</ion-label>
-      <ion-select [(ngModel)]="dadosDoForm.tipo">
-        <ion-option value="extensivo" selected>Extensivo</ion-option>
-        <ion-option value="intensivo">Intensivo</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-
-
-  <ion-list>
-    <ion-item>
-      <ion-label>Tipo de capim</ion-label>
-      <ion-select [(ngModel)]="dadosDoForm.tipoCapim">
-        <ion-option value="mombaca" selected>Mombaça</ion-option>
-        <ion-option value="braqueara">Braqueara</ion-option>
-        <ion-option value="quicuia">Quicuia</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-
-  <ion-list>
-    <ion-item>
-      <ion-label>Status</ion-label>
-      <ion-select [(ngModel)]="dadosDoForm.tipoRecuperacao">
-        <ion-option value="pronto" selected>Pronto</ion-option>
-        <ion-option value="recuperacao">Recuperação</ion-option>
-        <ion-option value="uso">Uso</ion-option>
-        <ion-option value="ocupado">Ocupado</ion-option>
-        <ion-option value="interditado">Interditado</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-
-  <ion-item>
-    <ion-icon color="primary" name="cube" item-start></ion-icon>
-    <ion-label stacked>Área</ion-label>
-    <ion-input id="descricao" type="number" [(ngModel)]="dadosDoForm.area"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-icon color="primary" name="cube" item-start></ion-icon>
-    <ion-label stacked>Tempo de recuperação</ion-label>
-    <ion-input id="descricao" type="number" [(ngModel)]="dadosDoForm.tempo-recuperacao"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-icon color="primary" name="cube" item-start></ion-icon>
-    <ion-label stacked>Capacidade (UA)</ion-label>
-    <ion-input id="descricao" type="number" [(ngModel)]="dadosDoForm.capacidadeUa"></ion-input>
-  </ion-item>
-
-  <div *ngIf="dadosDoForm.id">
-    <h3>Eventos</h3>
-    <button ion-button block (click)="novoEvento()">Adicionar</button>
-    <ion-list>
-      <ion-item text-wrap *ngFor="let item of listaEventos" (click)="abrirEvento(item)">
-        {{ item.nome }}
+  <div [ngSwitch]="piqueteSegment">
+    <ion-list *ngSwitchCase="'informacoes'">
+      <ion-item>
+        <ion-icon color="primary" name="medal" item-start></ion-icon>
+        <ion-label stacked>Nome</ion-label>
+        <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.nome" placeholder="Como você quer identificar o piquete?"></ion-input>
       </ion-item>
+
+      <ion-item>
+        <ion-icon color="primary" name="pricetags" item-start></ion-icon>
+        <ion-label stacked>Número</ion-label>
+        <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.numero" placeholder="Código de identificação"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon color="primary" name="grid" item-start></ion-icon>
+        <ion-label>Módulo</ion-label>
+        <ion-select [(ngModel)]="dadosDoForm.moduloId">
+          <ion-option value="" selected>Nenhum</ion-option>
+          <ion-option *ngFor="let item of listaModulos" value="{{item.id}}">{{ item.descricao }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon color="primary" name="flame" item-start></ion-icon>
+        <ion-label>Tipo</ion-label>
+        <ion-select [(ngModel)]="dadosDoForm.tipo">
+          <ion-option value="extensivo" selected>Extensivo</ion-option>
+          <ion-option value="intensivo">Intensivo</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon color="primary" name="leaf" item-start></ion-icon>
+        <ion-label>Tipo de capim</ion-label>
+        <ion-select [(ngModel)]="dadosDoForm.tipoCapim">
+          <ion-option value="mombaca" selected>Mombaça</ion-option>
+          <ion-option value="braqueara">Braqueara</ion-option>
+          <ion-option value="quicuia">Quicuia</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon color="primary" name="pulse" item-start></ion-icon>
+        <ion-label>Status</ion-label>
+        <ion-select [(ngModel)]="dadosDoForm.tipoRecuperacao">
+          <ion-option value="pronto" selected>Pronto</ion-option>
+          <ion-option value="recuperacao">Recuperação</ion-option>
+          <ion-option value="uso">Uso</ion-option>
+          <ion-option value="ocupado">Ocupado</ion-option>
+          <ion-option value="interditado">Interditado</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon color="primary" name="expand" item-start></ion-icon>
+        <ion-label stacked>Área</ion-label>
+        <ion-input id="descricao" type="number" [(ngModel)]="dadosDoForm.area" plaholder="Tamanho do piquete em hectares"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon color="primary" name="contract" item-start></ion-icon>
+        <ion-label stacked>Capacidade (UA)</ion-label>
+        <ion-input id="descricao" type="number" [(ngModel)]="dadosDoForm.capacidadeUa" placeholder="Quantas Ua esse piquete suporta?"></ion-input>
+      </ion-item>
+
+      <ion-item>
+          <ion-icon color="primary" name="alarm" item-start></ion-icon>
+          <ion-label stacked>Tempo de recuperação</ion-label>
+          <ion-input id="descricao" type="number" [(ngModel)]="dadosDoForm.tempoRecuperacao"></ion-input>
+        </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'eventos'">
+      <div *ngIf="dadosDoForm.id">
+        <ion-list>
+          <ion-item text-wrap *ngFor="let item of listaEventos" (click)="abrirEvento(item)">
+            <p>{{ item.tipo }}</p>
+            <h2>{{ item.nome }}</h2>
+            <div item-end>
+                <p *ngIf="item.tipo == 'manutencao'">
+                  Previsão<br>
+                  {{ item.previsao | date: 'dd/MM/yyyy' }}
+                </p>
+                <p *ngIf="item.tipo != 'manutencao'">
+                  Data<br>
+                  {{ item.data | date: 'dd/MM/yyyy' }}
+                </p>
+            </div>
+          </ion-item>
+
+          
+        </ion-list>
+      </div>
+
+      <ion-fab right bottom>
+        <button ion-fab color="primary" (click)="novoEvento()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </ion-fab>
     </ion-list>
   </div>
+
+
+
+
+
+
+
+
 
 
 </ion-content>
