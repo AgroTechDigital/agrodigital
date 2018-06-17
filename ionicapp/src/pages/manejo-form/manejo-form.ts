@@ -20,7 +20,7 @@ export class ManejoFormPage {
     { id: 5, nome: "Até 1 ano", UA: 0.25, sexo: '', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
   ]
 
-  public listaTipo: any[] = this.listaTipoBase;
+  public listaTipo: any[] = JSON.parse(JSON.stringify(this.listaTipoBase));
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public API: ManejoApi,
     public piqueteApi: PiqueteApi,
@@ -74,6 +74,7 @@ export class ManejoFormPage {
 
     try {
       if (!this.dadosDoForm.destinoId) throw 'informw o destino do manejo!';
+
       //recupera a origem e o destino
       let where = {
         or: []
@@ -82,26 +83,52 @@ export class ManejoFormPage {
       if (this.dadosDoForm.destinoId) where.or.push({ id: this.dadosDoForm.destinoId });
 
       if (where.or.length) {
-        this.piqueteApi.find({ where: where }).subscribe((r: Piquete[]) => {
-          let origem: Piquete = null;
-          if (this.dadosDoForm.origemId && r.length > 1) {
-            origem = r.find(x => x.id == this.dadosDoForm.origemId);
-            if (origem.animaisSimplificado) {
+        console.log('where ok');
 
+        this.piqueteApi.find({ where: where }).subscribe((r: Piquete[]) => {
+          console.log('piquetes', r);
+          //Origem
+          let origem: Piquete = null;
+          if (this.dadosDoForm.origemId && r.length) {
+            origem = r.find(x => x.id == this.dadosDoForm.origemId);
+            console.log('origem', origem);
+            if (!origem.animaisSimplificado) {
+              origem.animaisSimplificado = this.listaTipoBase;
             }
+            origem.animaisSimplificado.forEach(i => {
+              let animal = this.listaTipo.find(x => x.id == i.id);
+              if (animal.sexo == 'M') i.qtdMacho -= animal.qtdMacho;
+              else if (animal.sexo == 'F') i.qtdFemea -= animal.qtdFemea;
+            });
+            this.piqueteApi.upsert(origem).subscribe();
           }
 
-
-
-
+          //Destino
           let destino: Piquete = null;
-          r.find(x => x.id == this.dadosDoForm.destinoId);
+          if (this.dadosDoForm.origemId && r.length) {
+            destino = r.find(x => x.id == this.dadosDoForm.origemId);
+            console.log('destino', destino);
+            if (!destino.animaisSimplificado) {
+              destino.animaisSimplificado = this.listaTipoBase;
+            }
+            destino.animaisSimplificado.forEach(i => {
+              let animal = this.listaTipo.find(x => x.id == i.id);
+              if (animal.sexo == 'M') i.qtdMacho += animal.qtdMacho;
+              else if (animal.sexo == 'F') i.qtdFemea += animal.qtdFemea;
+            });
+            this.piqueteApi.upsert(destino).subscribe();
+          }
         });
       }
 
+      this.dadosDoForm.animaisSimplificado = this.listaTipo;
+
+      this.dadosDoForm.data = new Date();
+      this.dadosDoForm.estacao = "chuva";
+
       this.API.upsert(this.dadosDoForm).subscribe(
         (data: Manejo) => {
-          this.navCtrl.pop();
+          //this.navCtrl.pop();
         }
       )
 
