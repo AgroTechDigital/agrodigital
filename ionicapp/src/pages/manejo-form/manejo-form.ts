@@ -129,6 +129,7 @@ export class ManejoFormPage {
                 }
               });
               console.log('destino final', destino);
+              
               this.piqueteApi.upsert(destino).subscribe();
             }
           });
