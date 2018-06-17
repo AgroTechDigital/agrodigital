@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the FinanceiroMovimentacaoPagarFormPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { FinanceiroMovimentacao, FinanceiroMovimentacaoApi } from '../../app/shared/sdk';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,37 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FinanceiroMovimentacaoPagarFormPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public dadosDoForm: FinanceiroMovimentacao = new FinanceiroMovimentacao();
+
+  constructor(public navCtrl: NavController, 
+      public navParams: NavParams,
+      public API: FinanceiroMovimentacaoApi) {
+    let item = navParams.get('item');
+    if (item) this.dadosDoForm = Object.assign(new FinanceiroMovimentacao, item);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FinanceiroMovimentacaoPagarFormPage');
   }
 
+  salvar() {
+
+    try {
+      if (!this.dadosDoForm.descricao) throw 'Informe uma descrição';
+
+      this.dadosDoForm.debito = false;
+
+      this.API.upsert(this.dadosDoForm).subscribe(
+        (retorno: FinanceiroMovimentacao) => {
+          this.navCtrl.pop();
+        }
+      )
+
+    } catch (error) {
+      alert(error);
+    }
+  }
+
+  excluir() {
+
+  }
 }

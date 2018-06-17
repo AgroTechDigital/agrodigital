@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FinanceiroMovimentacao, FinanceiroMovimentacaoApi } from '../../app/shared/sdk';
+import { locateHostElement } from '@angular/core/src/render3/instructions';
 
 @IonicPage()
 @Component({
@@ -41,14 +42,15 @@ export class FinanceiroMovimentacaoListaPage {
   }
 
   abrir(item: FinanceiroMovimentacao = null, entrada: boolean) {
-    
-    if (item && entrada)
-      this.navCtrl.push('FinanceiroMovimentacaoReceberFormPage', { item: item });      
-    else if (!item && entrada)      
-      this.navCtrl.push('FinanceiroMovimentacaoReceberFormPage');      
+        
+    if (item && entrada)      
+      this.navCtrl.push('FinanceiroMovimentacaoReceberFormPage', { item: item });
+    else if (!item && entrada)            
+      this.navCtrl.push('FinanceiroMovimentacaoReceberFormPage');
     else if (!item && !entrada)    
-      this.navCtrl.push('FinanceiroMovimentacaoPagarFormPage', { item: item });        
-    else       
-      this.navCtrl.push('FinanceiroMovimentacaoPagarFormPage');
-  }
+              
+        this.navCtrl.push('FinanceiroMovimentacaoPagarFormPage', { item: item });
+    else             
+        this.navCtrl.push('FinanceiroMovimentacaoPagarFormPage');
+ }
 }
