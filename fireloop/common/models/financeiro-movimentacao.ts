@@ -51,19 +51,19 @@ class financeiroMovimentacao {
 
       db.collection('financeiroMovimentacao').aggregate(
         [
-          { $match: where },
+          //{ $match: where },
           {
             $group: {
-              _id: "1",
-              totalValor: { $sum: "$valor" }
-            }
-          }
+              _id:  "$debito",
+              total: { $sum: "$valor" }
+            }             
+          } 
         ], (erro: any, data: any) => {
           if (erro) {
             next(erro);
           } else {
             console.log(data);
-            next(null, data[0]);
+            next(null, data);
             // data.toArray(function (err: any, res: any) {
             //   next(null, res);
             // });
