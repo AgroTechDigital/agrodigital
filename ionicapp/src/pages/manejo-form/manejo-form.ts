@@ -72,6 +72,23 @@ export class ManejoFormPage {
     this.dadosDoForm.cabecas = total;
   }
 
+
+  calculaPiquete(piquete: Piquete): Piquete {
+    piquete.cabecas = 0;
+    piquete.UA = 0;
+    piquete.animaisSimplificado.forEach(i => {
+      if (i.sexo == 'M' || !i.sexo) {
+        piquete.cabecas += i.qtdMacho;
+        piquete.UA += i.qtdMacho * i.UA;
+      }
+      if (i.sexo == 'F' || !i.sexo) {
+        piquete.cabecas += i.qtdFemea;
+        piquete.UA += i.qtdFemea * i.UA;
+      }
+    });
+    return piquete;
+  }
+
   salvar() {
 
     if (confirm('Deseja realmente finalizar o manejo?')) {
@@ -107,6 +124,7 @@ export class ManejoFormPage {
                   i.qtdFemea += animal.qtdFemea;
                 }
               });
+              origem = this.calculaPiquete(origem);
               this.piqueteApi.upsert(origem).subscribe();
             }
 
@@ -129,7 +147,7 @@ export class ManejoFormPage {
                 }
               });
               console.log('destino final', destino);
-              
+              destino = this.calculaPiquete(destino);
               this.piqueteApi.upsert(destino).subscribe();
             }
           });
