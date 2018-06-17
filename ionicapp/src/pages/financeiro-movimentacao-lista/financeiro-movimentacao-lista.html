@@ -23,12 +23,12 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <em><b>Pagar</b>: R$ 20145,12</em>
-          <em><b>Receber</b>: R$ 145,12</em>
+          <em><b></b>Pagar: {{ Credito | currency: 'BRL' }}</em>
+          <em><b>Receber</b>: {{ Debito | currency: 'BRL' }}</em>
         </ion-col>
         <ion-col>
           <small>Saldo geral</small>
-          <p>R$ 2154,21</p>
+          <p>{{ Debito - Credito | currency: 'BRL' }}</p>
         </ion-col>
       </ion-row>
     </ion-grid>
