@@ -22,3 +22,13 @@
 .success{
     background: $success;
 }
+
+.success-text{
+    &:before{
+        color: $success;
+    }
+}
+
+ion-select{
+    max-width: none;
+}

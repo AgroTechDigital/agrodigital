@@ -20,20 +20,22 @@ export class FinanceiroMovimentacaoListaPage {
   public ttlReceber: any = [];
   public ttlPagar: any = [];
 
+  public Debito: number = 0;
+  public Credito: number = 0;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public API: FinanceiroMovimentacaoApi) {
+    public API: FinanceiroMovimentacaoApi,
+
+  ) {
 
     let item = navParams.get('item');
     if (item) this.dadosDoForm = Object.assign(new FinanceiroMovimentacao, item);
   }
 
-  ionViewDidLoad() {
-    // this.buscar();  
-  }
-
   ionViewDidEnter() {
     this.buscar();
+    this.calculaTotal();
   }
 
   buscar() {
@@ -55,9 +57,19 @@ export class FinanceiroMovimentacaoListaPage {
 
           }
         }
-        
       }
     )
+  }
+
+  calculaTotal(){
+    this.API.relatorioMovimentacoesFinanceiras().subscribe(
+      (data2: any[]) => {
+        data2.forEach(e => {
+          if (e._id) this.Debito = e.total;
+          else this.Credito = e.total;
+        });
+      }
+    );
   }
 
   abrir(entrada: boolean, item: FinanceiroMovimentacao = null) {

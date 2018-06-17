@@ -1,3 +1,23 @@
 page-financeiro-movimentacao-lista {
+    .totais{
+        color: #fff;
+        margin-top: -15px;
 
+        .col{
+            padding: 0 8px;
+        }
+
+        p{
+            margin: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        em{
+            font-style: normal;
+            margin-top: 9px;
+            display: block;
+            font-size: 12px;
+        }
+    }
 }
