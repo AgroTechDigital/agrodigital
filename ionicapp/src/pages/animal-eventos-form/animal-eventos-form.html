@@ -1,18 +1,50 @@
-<!--
-  Generated template for the AnimalEventosFormPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>animalEventosForm</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Eventos do animal</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="salvar()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="excluir()" *ngIf="dadosDoForm.id">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="fechar()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
+      <ion-label>Tipo de evento</ion-label>
+      <ion-select [(ngModel)]="dadosDoForm.tipo">
+        <ion-option value="vacina" selected>Vacinação</ion-option>
+        <ion-option value="doenca">Doença</ion-option>
+        <ion-option value="incidente">Incidente</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
+      <ion-label stacked>Descrição</ion-label>
+      <ion-input id="nome" type="text" [(ngModel)]="dadosDoForm.nome" placeholder="O que você quer registrar?"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
+      <ion-label>Data</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="D MMM YYYY HH:mm" cancelText="Cancelar" doneText="OK" max="2020-12-31"
+        [(ngModel)]="dadosDoForm.data" minuteValues="0,15,30,45"></ion-datetime>
+    </ion-item>
+
+  </ion-list>
 
 </ion-content>
