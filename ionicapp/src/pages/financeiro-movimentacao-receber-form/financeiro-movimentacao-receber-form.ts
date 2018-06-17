@@ -34,7 +34,7 @@ export class FinanceiroMovimentacaoReceberFormPage {
     try {
       if (!this.dadosDoForm.descricao) throw 'Informe uma descrição';
 
-      this.dadosDoForm.debito = true;
+      this.dadosDoForm.debito = false;
 
       this.API.upsert(this.dadosDoForm).subscribe(
         (retorno: FinanceiroMovimentacao) => {

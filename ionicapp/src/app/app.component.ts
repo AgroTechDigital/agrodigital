@@ -18,7 +18,8 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-    LoopBackConfig.setBaseURL('http://192.168.1.101:3000');
+    // LoopBackConfig.setBaseURL('http://192.168.1.101:3000');
+    LoopBackConfig.setBaseURL('https://agrodigital.herokuapp.com');
 
     // used for an example of ngFor and navigation
     this.pages = [
