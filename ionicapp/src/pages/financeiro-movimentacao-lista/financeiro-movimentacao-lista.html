@@ -28,11 +28,9 @@
 <ion-content>
 
   <ion-list>
-    <ion-item text-wrap *ngFor="let item of lista" (click)="abrir(item.debito,item)">
-      <ion-avatar item-start>
-        <img src="assets/imgs/img-pasto.jpg">
-      </ion-avatar>      
-      {{item.debito}} <!-- exibir uma barrinha/bolinha verde p/true | vermelho p/false -->
+    <ion-item text-wrap *ngFor="let item of lista" (click)="abrir(item.debito,item)">      
+      <!-- exibir uma barrinha/bolinha verde p/true | vermelho p/false -->
+      {{item.debito}} 
       {{item.descricao}}
       R$ {{item.valor}}
       <p>{{item.categoria.descricao}}</p>
