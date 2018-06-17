@@ -14,7 +14,9 @@ export class PiqueteFormPage {
   public listaEventos: PiqueteEventos[] = [];
   public piqueteSegment: string = 'informacoes';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
     public modalCtrl: ModalController,
     public API: PiqueteApi,
     public moduloApi: ModuloApi,
@@ -25,22 +27,13 @@ export class PiqueteFormPage {
   }
 
   ionViewDidEnter() {
-    //Buscar Todos os Modulos
     this.moduloApi.find().subscribe(
       (retorno: Modulo[]) => {
         this.listaModulos = retorno;
       }
     )
 
-    //Buscar os eventos deste piquete
     this.buscarEventos();
-  }
-
-  callbackEventos = (_params) => {
-    return new Promise((resolve, reject) => {
-      this.buscarEventos();
-      resolve();
-    })
   }
 
   buscarEventos() {
@@ -80,6 +73,13 @@ export class PiqueteFormPage {
 
   excluir() {
 
+  }
+
+  callbackEventos = (_params) => {
+    return new Promise((resolve, reject) => {
+      this.buscarEventos();
+      resolve();
+    })
   }
 
 }

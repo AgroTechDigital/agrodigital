@@ -13,12 +13,32 @@
     </ion-buttons>
   </ion-navbar>
 
+  <ion-toolbar color="primary">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <!-- <ion-label stacked>Total Cabeças</ion-label>
+            <ion-input type="text" readonly [(ngModel)]="dadosDoForm.cabecas"></ion-input> -->
+          <small>Cabeças</small>
+          <p>{{ dadosDoForm.cabecas ? dadosDoForm.cabecas : 0 }}</p>
+        </ion-col>
+        <ion-col>
+          <!-- <ion-label stacked>Total UA</ion-label>
+            <ion-input type="text" readonly [(ngModel)]="dadosDoForm.UA"></ion-input> -->
+          <small>Unidade animal (UA)</small>
+          <p>{{ dadosDoForm.UA ? dadosDoForm.UA : 0 }}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
   <ion-list>
     <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
       <ion-label>Origem</ion-label>
       <ion-select [(ngModel)]="dadosDoForm.origemId">
         <ion-option value="" selected>Nenhum</ion-option>
@@ -27,10 +47,9 @@
         </ion-option>
       </ion-select>
     </ion-item>
-  </ion-list>
 
-  <ion-list>
     <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
       <ion-label>Destino</ion-label>
       <ion-select [(ngModel)]="dadosDoForm.destinoId">
         <ion-option value="" selected>Nenhum</ion-option>
@@ -39,41 +58,23 @@
         </ion-option>
       </ion-select>
     </ion-item>
-  </ion-list>
 
-  <ion-item>
-    <ion-icon color="primary" name="cube" item-start></ion-icon>
-    <ion-label stacked>Descrição</ion-label>
-    <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.descricao"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
+      <ion-label stacked>Descrição</ion-label>
+      <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.descricao"></ion-input>
+    </ion-item>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label stacked>Total Cabeças</ion-label>
-          <ion-input type="text" readonly [(ngModel)]="dadosDoForm.cabecas"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item>
-          <ion-label stacked>Total UA</ion-label>
-          <ion-input type="text" readonly [(ngModel)]="dadosDoForm.UA"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <h3>Animais</h3>
 
-  <h3>Animais</h3>
-  <ion-list>
     <ion-item text-wrap *ngFor="let item of listaTipo">
       <ion-avatar item-start>
         <img src="assets/imgs/{{item.image}}">
       </ion-avatar>
 
       {{item.nome}}
-      <div item-end>
 
+      <div item-end>
         <div *ngIf="item.sexo == 'M' || !item.sexo">
           Macho
           <button ion-button icon-only round (click)="soma(item,'M');">
@@ -95,8 +96,8 @@
           {{item.qtdFemea}}
         </div>
       </div>
-
     </ion-item>
+
   </ion-list>
 
 </ion-content>

@@ -16,6 +16,8 @@
 
 const int buzzer =  0;
 
+int peco;
+
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
 HttpClient httpClient;
@@ -89,9 +91,11 @@ void GRfid::setLoop()
 
     String request = "";
 
-    String body = "{'etiqueta':'999', 'peso': 100}";
+    peco = random(100, 450);
 
-    request = httpClient.post("http://192.168.1.20:3000/api/animalRFIDs", "json", body);
+    String body = "{\"etiqueta\": \""+_content+"\", \"peso\": \""+peco+"\"}";
+
+    request = httpClient.post("http://192.168.1.20:3000/api/animalRFIDs", "application/json", body);
 
     Serial.println();
     Serial.print("http client : ");
