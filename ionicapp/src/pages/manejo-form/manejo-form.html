@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Manejo</ion-title>
+    <ion-title>Manejo Simplificado</ion-title>
 
     <ion-buttons end>
       <button ion-button icon-only (click)="salvar()">
@@ -34,12 +34,12 @@
 
   <ion-item-group>
     <ion-item-divider color="light">Informações</ion-item-divider>
-    
+
     <ion-item>
       <ion-icon color="primary" name="cube" item-start></ion-icon>
       <ion-label>Origem</ion-label>
       <ion-select [(ngModel)]="dadosDoForm.origemId">
-        <ion-option value="" selected>Nenhum</ion-option>
+        <ion-option value="" selected>Entrada/ Compra/ Nascimento</ion-option>
         <ion-option *ngFor="let item of listaPiquetes" value="{{item.id}}">{{ item.nome }}
           <span *ngIf="item.numero"> - {{item.numero}} </span>
         </ion-option>
@@ -50,7 +50,7 @@
       <ion-icon color="primary" name="cube" item-start></ion-icon>
       <ion-label>Destino</ion-label>
       <ion-select [(ngModel)]="dadosDoForm.destinoId">
-        <ion-option value="" selected>Nenhum</ion-option>
+        <ion-option value="" selected>Saída/ Venda/ Baixa</ion-option>
         <ion-option *ngFor="let item of listaPiquetes" value="{{item.id}}">{{ item.nome }}
           <span *ngIf="item.numero"> - {{item.numero}} </span>
         </ion-option>
@@ -97,7 +97,7 @@
               <button ion-button icon-only round (click)="soma(item,'F');" class="btnMais">
                 <ion-icon name="add"></ion-icon>
               </button>
-              <button ion-button icon-only round (click)="subtrair(item,'M')" class="btnMenos">
+              <button ion-button icon-only round (click)="subtrair(item,'F')" class="btnMenos">
                 <ion-icon name="remove"></ion-icon>
               </button>
             </div>
