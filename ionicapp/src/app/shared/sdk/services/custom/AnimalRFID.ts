@@ -10,16 +10,15 @@ import { ErrorHandler } from '../core/error.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
-import { AnimalEventos } from '../../models/AnimalEventos';
+import { AnimalRFID } from '../../models/AnimalRFID';
 import { SocketConnection } from '../../sockets/socket.connections';
-import { Animal } from '../../models/Animal';
 
 
 /**
- * Api services for the `AnimalEventos` model.
+ * Api services for the `AnimalRFID` model.
  */
 @Injectable()
-export class AnimalEventosApi extends BaseLoopBackApi {
+export class AnimalRFIDApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(HttpClient) protected http: HttpClient,
@@ -29,36 +28,6 @@ export class AnimalEventosApi extends BaseLoopBackApi {
     @Optional() @Inject(ErrorHandler) protected errorHandler: ErrorHandler
   ) {
     super(http,  connection,  models, auth, errorHandler);
-  }
-
-  /**
-   * Fetches belongsTo relation animal.
-   *
-   * @param {any} id animalEventos id
-   *
-   * @param {boolean} refresh 
-   *
-   * @returns {object} An empty reference that will be
-   *   populated with the actual data once the response is returned
-   *   from the server.
-   *
-   * <em>
-   * (The remote method definition does not provide any description.
-   * This usually means the response is a `AnimalEventos` object.)
-   * </em>
-   */
-  public getAnimal(id: any, refresh: any = {}, customHeaders?: Function): Observable<any> {
-    let _method: string = "GET";
-    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/animalEventos/:id/animal";
-    let _routeParams: any = {
-      id: id
-    };
-    let _postBody: any = {};
-    let _urlParams: any = {};
-    if (typeof refresh !== 'undefined' && refresh !== null) _urlParams.refresh = refresh;
-    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody, null, customHeaders);
-    return result;
   }
 
   /**
@@ -74,13 +43,13 @@ export class AnimalEventosApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `AnimalEventos` object.)
+   * This usually means the response is a `AnimalRFID` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/animalEventos";
+    "/animalRFIDs";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -93,7 +62,7 @@ export class AnimalEventosApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id animalEventos id
+   * @param {any} id animalRFID id
    *
    * @param {object} data Request data.
    *
@@ -105,13 +74,13 @@ export class AnimalEventosApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `AnimalEventos` object.)
+   * This usually means the response is a `AnimalRFID` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/animalEventos/:id";
+    "/animalRFIDs/:id";
     let _routeParams: any = {
       id: id
     };
@@ -136,10 +105,10 @@ export class AnimalEventosApi extends BaseLoopBackApi {
    *
    *  - `result` – `{any}` - 
    */
-  public setPesagem(customHeaders?: Function): Observable<any> {
+  public leitura(customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/animalEventos/my-remote";
+    "/animalRFIDs/leitura";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
@@ -148,7 +117,7 @@ export class AnimalEventosApi extends BaseLoopBackApi {
   }
 
   /**
-   * Statistical information for animalEventos registers.
+   * Statistical information for animalRFID registers.
    *
    * @param {string} range hourly, daily, weekly, monthly, yearly, custom
    *
@@ -164,13 +133,13 @@ export class AnimalEventosApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `AnimalEventos` object.)
+   * This usually means the response is a `AnimalRFID` object.)
    * </em>
    */
   public stats(range: any, custom: any = {}, where: any = {}, groupBy: any = {}, customHeaders?: Function): Observable<any> {
     let _method: string = "GET";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/animalEventos/stats";
+    "/animalRFIDs/stats";
     let _routeParams: any = {};
     let _postBody: any = {};
     let _urlParams: any = {};
@@ -184,9 +153,9 @@ export class AnimalEventosApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `AnimalEventos`.
+   * i.e. `AnimalRFID`.
    */
   public getModelName() {
-    return "AnimalEventos";
+    return "AnimalRFID";
   }
 }

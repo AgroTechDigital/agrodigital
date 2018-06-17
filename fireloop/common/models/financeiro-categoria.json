@@ -8,7 +8,7 @@
   "mixins": {
     "TimeStamp": {
       "required": false
-    }   
+    }
   },
   "properties": {
     "descricao": {

@@ -11,7 +11,7 @@ import { Model } from '@mean-expert/model';
     beforeSave: { name: 'before save', type: 'operation' }
   },
   remotes: {
-    myRemote: {
+    setPesagem: {
       returns : { arg: 'result', type: 'array' },
       http    : { path: '/my-remote', verb: 'get' }
     }
