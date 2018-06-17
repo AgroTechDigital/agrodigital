@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { FinanceiroMovimentacao, FinanceiroMovimentacaoApi } from '../../app/shared/sdk';
+import { FinanceiroMovimentacao, FinanceiroMovimentacaoApi, FinanceiroCategoria } from '../../app/shared/sdk';
 import { locateHostElement } from '@angular/core/src/render3/instructions';
 
 @IonicPage()
@@ -32,13 +32,13 @@ export class FinanceiroMovimentacaoListaPage {
     this.API.find({
       where: {
         descricao: { like: this.termoBuscado, options: 'i' }
-      }
+      }, include: { FinanceiroCategoria }
     }).subscribe(
       (data: FinanceiroMovimentacao[]) => {
         this.lista = data;
-
-      }
-    )
+        console.log(JSON.stringify(this.lista));
+      }                  
+    )    
   }
 
   abrir(item: FinanceiroMovimentacao = null, entrada: boolean) {
