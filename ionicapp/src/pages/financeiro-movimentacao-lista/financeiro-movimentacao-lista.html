@@ -23,12 +23,12 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <small>Receber</small>
-          <p>{{ttlReceber.length}}</p>
+          <em><b>Pagar</b>: R$ 20145,12</em>
+          <em><b>Receber</b>: R$ 145,12</em>
         </ion-col>
         <ion-col>
-          <small>Pagar</small>
-          <p>{{ttlPagar.length}}</p>
+          <small>Saldo geral</small>
+          <p>R$ 2154,21</p>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -44,11 +44,13 @@
 
   <ion-list>
     <ion-item text-wrap *ngFor="let item of lista" (click)="abrir(item.debito,item)">      
-      <!-- exibir uma barrinha/bolinha verde p/true | vermelho p/false -->
-      {{item.debito}} 
+      <ion-icon item-start *ngIf="item.debito" color="danger" name="remove-circle"></ion-icon>
+      <ion-icon item-start *ngIf="!item.debito" class="success-text" name="checkmark-circle"></ion-icon>
       {{item.descricao}}
-      R$ {{item.valor}}
       <p>{{item?.categoria?.descricao}}</p>
+      <div item-end>
+          <p>{{item.valor | currency: 'BRL'}}</p>
+      </div>
     </ion-item>
   </ion-list>
 

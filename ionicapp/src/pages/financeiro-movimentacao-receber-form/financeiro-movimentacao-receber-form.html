@@ -15,34 +15,34 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
   <ion-item>
     <ion-icon color="primary" name="cube" item-start></ion-icon>
     <ion-label stacked>Descrição</ion-label>
     <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.descricao"></ion-input>
-  </ion-item> 
- 
+  </ion-item>
+
   <ion-item>
     <ion-icon color="primary" name="cube" item-start></ion-icon>
     <ion-label stacked>Valor</ion-label>
     <ion-input id="valor" type="text" [(ngModel)]="dadosDoForm.valor"></ion-input>
-  </ion-item> 
-  
+  </ion-item>
+
   <ion-item>
-    <ion-label color="primary" name="cube" item-start>Data</ion-label>
+    <ion-icon color="primary" name="cube" item-start></ion-icon>
+    <ion-label>Data</ion-label>
     <ion-datetime [(ngModel)]="dadosDoForm.dataMovimentacao" type="datetime" displayFormat="DD/MM/YYYY"></ion-datetime>
   </ion-item>
 
-  <ion-list>
-    <ion-item>
-      <ion-label color="primary" name="cube" item-start>Tipo de custo</ion-label>
-      <ion-select [(ngModel)]="dadosDoForm.custoFixo">
-        <ion-option value="1">Fixo</ion-option>
-        <ion-option value="0">Variável</ion-option>                                    
-      </ion-select>
-    </ion-item>
-  </ion-list>
+  <ion-item>
+    <ion-icon color="primary" name="cube" item-start></ion-icon>
+    <ion-label>Tipo de custo</ion-label>
+    <ion-select [(ngModel)]="dadosDoForm.custoFixo">
+      <ion-option value="1">Fixo</ion-option>
+      <ion-option value="0">Variável</ion-option>
+    </ion-select>
+  </ion-item>
 
   <ion-item>
     <ion-icon color="primary" name="grid" item-start></ion-icon>
