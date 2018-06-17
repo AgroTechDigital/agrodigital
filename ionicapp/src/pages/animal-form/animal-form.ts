@@ -37,7 +37,7 @@ export class AnimalFormPage {
   }
 
   buscarEventos() {
-    this.animalEventosApi.find({ where: { piqueteId: this.dadosDoForm.id }, order: 'createdAt DESC' }).subscribe(
+    this.animalEventosApi.find({ where: { animalId: this.dadosDoForm.id }, order: 'createdAt DESC' }).subscribe(
       (data: AnimalEventos[]) => {
         this.listaEventos = data;
       }
