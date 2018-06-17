@@ -14,37 +14,44 @@
 
   <div class="controle-quantidade">
     <p>
-      <b>9999</b> cabeças
+      <b>{{ Cabecas }}</b> cabeças
     </p>
     <p>
-      <b>15</b> piquetes
+      <b>{{ Piquetes }}</b> piquetes
     </p>
   </div>
 
   <div class="controle-quantidade">
     <p>
-      <b>500</b> arrobas
+      <b>{{ (UA * 450) / 30 }}</b> arrobas
     </p>
     <p>
-      <b>150</b> unidades animais
+      <b>{{ UA }}</b> unidades animais
     </p>
   </div>
 
   <div class="controle-financeiro">
     <p class="APagar">
-      <b>Pagar:</b> R$ 200,00</p>
+      <b>Pagar:</b> {{Credito | currency:'BRL':'symbol':'1.2-2'}}</p>
     <p class="AReceber">
-      <b>Receber:</b> R$ 500,00</p>
+      <b>Receber:</b> {{Debito | currency:'BRL':'symbol':'1.2-2'}}</p>
     <p class="saldo">
       <b>Saldo</b>
-      R$50.000,00
+      {{Debito-Credito | currency:'BRL':'symbol':'1.2-2'}}
     </p>
   </div>
 
   <div class="custo-arroba">
     <p>Custo por arroba</p>
     <h1>
-      R$999,00
+      {{ Credito / ( (UA * 450) / 30) | currency:'BRL':'symbol':'1.2-2' }}
+    </h1>
+  </div>
+
+  <div class="custo-arroba">
+    <p>Projeção por arroba</p>
+    <h1>
+      {{ Credito / ( (Cabecas* 450) / 30) | currency:'BRL':'symbol':'1.2-2' }}
     </h1>
   </div>
 
