@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Piquete, PiqueteApi } from '../../app/shared/sdk';
 
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-piquete-lista',
   templateUrl: 'piquete-lista.html',

@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoopBackConfig } from './shared/sdk';
-import { PiqueteListaPage } from '../pages/piquete-lista/piquete-lista';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,7 +12,7 @@ import { PiqueteListaPage } from '../pages/piquete-lista/piquete-lista';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = PiqueteListaPage;
+  rootPage: any = DashboardPage;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -22,10 +22,11 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
+      { title: 'Dashboard', component: DashboardPage},
       { title: 'Animais', component: 'AnimalListaPage'},
       { title: 'Evento em Lote', component: 'AnimalEventoLoteFormPage'},
       { title: 'Módulos', component: 'ModuloListaPage'},
-      { title: 'Piquetes', component: PiqueteListaPage },
+      { title: 'Piquetes', component: 'PiqueteListaPage' },
       { title: 'Manejo', component: 'ManejoFormPage'},
       { title: 'Categoria', component: 'FinanceiroCategoriaListaPage'},
       { title: 'Lançamento de contas', component: 'FinanceiroMovimentacaoListaPage'}

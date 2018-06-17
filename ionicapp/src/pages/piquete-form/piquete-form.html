@@ -11,6 +11,21 @@
         <ion-icon name="trash"></ion-icon>
       </button>
     </ion-buttons>
+
+    <ion-toolbar color="primary" class="totais" *ngIf="this.dadosDoForm.id">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <small>Cabeças</small>
+            <p>{{ dadosDoForm.cabecas ? dadosDoForm.cabecas : 0 }}</p>
+          </ion-col>
+          <ion-col>
+            <small>Unidade animal (UA)</small>
+            <p>{{ dadosDoForm.UA ? dadosDoForm.UA : 0 }}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
   </ion-navbar>
 
   <ion-toolbar color="primary">
@@ -20,6 +35,9 @@
       </ion-segment-button>
       <ion-segment-button value="eventos">
         Eventos
+      </ion-segment-button>
+      <ion-segment-button value="animaisSimplificado" *ngIf="this.dadosDoForm.animaisSimplificado">
+        Animais
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
@@ -94,10 +112,10 @@
       </ion-item>
 
       <ion-item>
-          <ion-icon color="primary" name="alarm" item-start></ion-icon>
-          <ion-label stacked>Tempo de recuperação</ion-label>
-          <ion-input id="descricao" type="number" [(ngModel)]="dadosDoForm.tempoRecuperacao"></ion-input>
-        </ion-item>
+        <ion-icon color="primary" name="alarm" item-start></ion-icon>
+        <ion-label stacked>Tempo de recuperação</ion-label>
+        <ion-input id="descricao" type="number" [(ngModel)]="dadosDoForm.tempoRecuperacao"></ion-input>
+      </ion-item>
     </ion-list>
 
     <ion-list *ngSwitchCase="'eventos'">
@@ -107,14 +125,14 @@
             <p>{{ item.tipo }}</p>
             <h2>{{ item.nome }}</h2>
             <div item-end>
-                <p *ngIf="item.tipo == 'manutencao'">
-                  Previsão<br>
-                  {{ item.previsao | date: 'dd/MM/yyyy' }}
-                </p>
-                <p *ngIf="item.tipo != 'manutencao'">
-                  Data<br>
-                  {{ item.data | date: 'dd/MM/yyyy' }}
-                </p>
+              <p *ngIf="item.tipo == 'manutencao'">
+                Previsão
+                <br> {{ item.previsao | date: 'dd/MM/yyyy' }}
+              </p>
+              <p *ngIf="item.tipo != 'manutencao'">
+                Data
+                <br> {{ item.data | date: 'dd/MM/yyyy' }}
+              </p>
             </div>
           </ion-item>
         </ion-list>
@@ -125,6 +143,37 @@
           <ion-icon name="add"></ion-icon>
         </button>
       </ion-fab>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'animaisSimplificado'">
+
+      <ion-item-group>
+        <ion-item-divider color="light">Animais</ion-item-divider>
+
+      </ion-item-group>
+
+      <ion-item text-wrap *ngFor="let item of dadosDoForm.animaisSimplificado">
+        <ion-avatar item-start>
+          <img src="assets/imgs/{{item.image}}">
+        </ion-avatar>
+
+        {{ item.nome }}
+
+        <div item-end>
+          <div class="quantidades">
+            <div *ngIf="item.sexo == 'M' || !item.sexo">
+              <p>Macho</p>
+              <!-- {{item.qtdMacho}} -->
+              <input type="number" [(ngModel)]="item.qtdMacho" readonly>
+            </div>
+            <div *ngIf="item.sexo == 'F' || !item.sexo">
+              <p>Femea</p>
+              <!-- {{item.qtdFemea}} -->
+              <input type="number" [(ngModel)]="item.qtdFemea" readonly>
+            </div>
+          </div>
+        </div>
+      </ion-item>
     </ion-list>
   </div>
 

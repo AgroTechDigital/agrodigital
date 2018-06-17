@@ -6,12 +6,12 @@ import { SDKBrowserModule } from './shared/sdk/index';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { PiqueteListaPage } from '../pages/piquete-lista/piquete-lista';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 
 @NgModule({
   declarations: [
     MyApp,
-    PiqueteListaPage
+    DashboardPage
   ],
   imports: [
     BrowserModule,
@@ -21,7 +21,7 @@ import { PiqueteListaPage } from '../pages/piquete-lista/piquete-lista';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    PiqueteListaPage
+    DashboardPage
   ],
   providers: [
     StatusBar,
