@@ -10,7 +10,7 @@ import { AnimalEventos, Animal, AnimalEventosApi } from '../../app/shared/sdk';
 export class AnimalEventosFormPage {
 
   public dadosDoForm: AnimalEventos = new AnimalEventos();
-  public piquete: Animal = null;
+  public animal: Animal = null;
   public callback: any = null;
 
   constructor(
@@ -21,8 +21,8 @@ export class AnimalEventosFormPage {
   ) {
     let _item = navParams.get('item');
     if (_item) this.dadosDoForm = Object.assign(new AnimalEventos, _item);
-    let _piquete = navParams.get('piquete');
-    if (_piquete) this.piquete = Object.assign(new AnimalEventos, _piquete);
+    let _animal = navParams.get('animal');
+    if (_animal) this.animal = Object.assign(new AnimalEventos, _animal);
     let _callback = navParams.get('callback');
     if (_callback) this.callback = _callback;
 
@@ -35,8 +35,8 @@ export class AnimalEventosFormPage {
       if (!this.dadosDoForm.nome) throw 'Informe uma nome do evento';
       if (!this.dadosDoForm.tipo) throw 'Informe o tipo de evento';
 
-      if (this.piquete) {
-        this.dadosDoForm.animalId = this.piquete.id;
+      if (this.animal) {
+        this.dadosDoForm.animalId = this.animal.id;
       }
 
       this.API.upsert(this.dadosDoForm).subscribe(
