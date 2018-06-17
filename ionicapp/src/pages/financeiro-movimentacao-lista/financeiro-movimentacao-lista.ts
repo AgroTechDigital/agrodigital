@@ -10,17 +10,26 @@ import { locateHostElement } from '@angular/core/src/render3/instructions';
 })
 export class FinanceiroMovimentacaoListaPage {
 
+  public dadosDoForm: FinanceiroMovimentacao[] = [];
   public buscando: boolean = false;
   public termoBuscado: string = '';
   public lista: FinanceiroMovimentacao[];
+  public totalReceber?: number;
+  public totalPagar?: number;
+
+  public ttlReceber: any = [];
+  public ttlPagar: any = [];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public API: FinanceiroMovimentacaoApi) {
+
+    let item = navParams.get('item');
+    if (item) this.dadosDoForm = Object.assign(new FinanceiroMovimentacao, item);
   }
 
   ionViewDidLoad() {
-    // this.buscar();
+    // this.buscar();  
   }
 
   ionViewDidEnter() {
@@ -36,6 +45,17 @@ export class FinanceiroMovimentacaoListaPage {
     }).subscribe(
       (data: FinanceiroMovimentacao[]) => {
         this.lista = data;
+
+        for (let i = 0; i < this.lista.length; i++) {
+          if (this.lista[i].debito) {
+            this.ttlReceber += this.lista[i].valor;
+          }
+          else {
+            this.ttlPagar +=this.lista[i].valor;            
+
+          }
+        }
+        
       }
     )
   }
@@ -47,6 +67,5 @@ export class FinanceiroMovimentacaoListaPage {
     else { //pagar
       this.navCtrl.push('FinanceiroMovimentacaoPagarFormPage', { item: item });
     }
-
   }
 }

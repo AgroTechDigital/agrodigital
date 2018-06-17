@@ -19,6 +19,21 @@
     </ion-buttons>
   </ion-navbar>
 
+  <ion-toolbar color="primary" class="totais">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <small>Receber</small>
+          <p>{{ttlReceber.length}}</p>
+        </ion-col>
+        <ion-col>
+          <small>Pagar</small>
+          <p>{{ttlPagar.length}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+
   <ion-toolbar color="primary">
     <ion-searchbar (input)="buscando = true" (ionInput)="buscar()" [(ngModel)]="termoBuscado" debounce="500" placeholder="Pesquisar..."></ion-searchbar>
   </ion-toolbar>
