@@ -23,6 +23,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Animais', component: 'AnimalListaPage'},
+      { title: 'Evento em Lote', component: 'AnimalEventoLoteFormPage'},
       { title: 'Módulos', component: 'ModuloListaPage'},
       { title: 'Piquetes', component: PiqueteListaPage },
       { title: 'Manejo', component: 'ManejoFormPage'},

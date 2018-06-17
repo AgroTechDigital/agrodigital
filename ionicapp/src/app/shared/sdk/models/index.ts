@@ -8,5 +8,6 @@ export * from './Animal';
 export * from './AnimalEventos';
 export * from './FinanceiroCategoria';
 export * from './FinanceiroMovimentacao';
+export * from './AnimalRFID';
 export * from './BaseModels';
 export * from './FireLoopRef';

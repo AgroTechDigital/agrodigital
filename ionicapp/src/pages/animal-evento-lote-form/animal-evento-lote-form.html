@@ -1,0 +1,74 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Evento de Animal em Lote</ion-title>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="salvar()">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>
+
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
+      <ion-label>Tipo de evento</ion-label>
+      <ion-select [(ngModel)]="dadosDoForm.tipo">
+        <ion-option value="vacinacao" selected>vacinacao</ion-option>
+        <ion-option value="doenca">Doença</ion-option>
+        <ion-option value="pesagem">Pesagem</ion-option>
+        <ion-option value="incidente">Incidente</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
+      <ion-label stacked>Descrição</ion-label>
+      <ion-input id="nome" type="text" [(ngModel)]="dadosDoForm.nome" placeholder="O que você quer registrar?"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
+      <ion-label>Data</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY HH:mm" pickerFormat="D MMM YYYY HH:mm" cancelText="Cancelar" doneText="OK" max="2020-12-31"
+        [(ngModel)]="dadosDoForm.data" minuteValues="0,15,30,45"></ion-datetime>
+    </ion-item>
+
+    <h3>Animais</h3>
+    <span>Aguardando leitura RFID</span>
+    <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
+      <ion-label stacked>Tag</ion-label>
+      <ion-input id="nome" type="text" [(ngModel)]="tagManual.etiqueta" placeholder="Informe o numero do animal"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon color="primary" name="cube" item-start></ion-icon>
+      <ion-label stacked>Tag</ion-label>
+      <ion-input id="nome" type="number" [(ngModel)]="tagManual.peso" placeholder="Informe o peso do animal"></ion-input>
+      <button ion-button icon-left outline item-end (click)="addManual()">
+        <ion-icon name="add"></ion-icon>
+        Adicionar
+      </button>
+    </ion-item>
+
+    <ion-list>
+      <ion-item text-wrap *ngFor="let item of lista" (click)="abrir(item)">
+        <b>Etiqueta:</b> {{ item.etiqueta }}
+        <span *ngIf="item.peso">
+          <b>Peso:</b> {{ item.peso }}</span>
+      </ion-item>
+    </ion-list>
+
+  </ion-list>
+
+</ion-content>

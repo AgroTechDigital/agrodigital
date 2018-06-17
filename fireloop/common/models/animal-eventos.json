@@ -30,6 +30,9 @@
     },
     "tipo": {
       "type": "string"
+    },
+    "data": {
+      "type": "date"
     }
   },
   "validations": [],

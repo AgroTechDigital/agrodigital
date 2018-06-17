@@ -57,6 +57,7 @@ import { AnimalApi } from './services/custom/Animal';
 import { AnimalEventosApi } from './services/custom/AnimalEventos';
 import { FinanceiroCategoriaApi } from './services/custom/FinanceiroCategoria';
 import { FinanceiroMovimentacaoApi } from './services/custom/FinanceiroMovimentacao';
+import { AnimalRFIDApi } from './services/custom/AnimalRFID';
 /**
 * @module SDKBrowserModule
 * @description
@@ -96,6 +97,7 @@ export class SDKBrowserModule {
         AnimalEventosApi,
         FinanceiroCategoriaApi,
         FinanceiroMovimentacaoApi,
+        AnimalRFIDApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser },
         { provide: SocketDriver, useClass: SocketBrowser }

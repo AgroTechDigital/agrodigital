@@ -66,5 +66,9 @@
   "financeiroMovimentacao": {
     "dataSource": "db",
     "public": true
+  },
+  "animalRFID": {
+    "dataSource": "db-memory",
+    "public": true
   }
 }

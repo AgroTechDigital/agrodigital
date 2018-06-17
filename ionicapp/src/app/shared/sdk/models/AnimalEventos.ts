@@ -7,6 +7,7 @@ declare var Object: any;
 export interface AnimalEventosInterface {
   "nome": string;
   "tipo"?: string;
+  "data"?: Date;
   "id"?: any;
   "animalId"?: any;
   "createdAt"?: Date;
@@ -17,6 +18,7 @@ export interface AnimalEventosInterface {
 export class AnimalEventos implements AnimalEventosInterface {
   "nome": string;
   "tipo": string;
+  "data": Date;
   "id": any;
   "animalId": any;
   "createdAt": Date;
@@ -62,6 +64,10 @@ export class AnimalEventos implements AnimalEventosInterface {
         "tipo": {
           name: 'tipo',
           type: 'string'
+        },
+        "data": {
+          name: 'data',
+          type: 'Date'
         },
         "id": {
           name: 'id',

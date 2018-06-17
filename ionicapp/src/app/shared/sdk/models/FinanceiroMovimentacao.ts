@@ -11,7 +11,7 @@ export interface FinanceiroMovimentacaoInterface {
   "debito"?: boolean;
   "custoFixo"?: boolean;
   "recorente"?: boolean;
-  "tags"?: Array<any>;
+  "tags"?: string;
   "id"?: any;
   "categoriaId"?: any;
   "financeiroCategoriaId"?: any;
@@ -27,7 +27,7 @@ export class FinanceiroMovimentacao implements FinanceiroMovimentacaoInterface {
   "debito": boolean;
   "custoFixo": boolean;
   "recorente": boolean;
-  "tags": Array<any>;
+  "tags": string;
   "id": any;
   "categoriaId": any;
   "financeiroCategoriaId": any;
@@ -93,7 +93,7 @@ export class FinanceiroMovimentacao implements FinanceiroMovimentacaoInterface {
         },
         "tags": {
           name: 'tags',
-          type: 'Array&lt;any&gt;'
+          type: 'string'
         },
         "id": {
           name: 'id',

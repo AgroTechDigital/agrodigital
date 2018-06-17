@@ -9,6 +9,7 @@ import { Animal } from '../../models/Animal';
 import { AnimalEventos } from '../../models/AnimalEventos';
 import { FinanceiroCategoria } from '../../models/FinanceiroCategoria';
 import { FinanceiroMovimentacao } from '../../models/FinanceiroMovimentacao';
+import { AnimalRFID } from '../../models/AnimalRFID';
 
 export interface Models { [name: string]: any }
 
@@ -25,6 +26,7 @@ export class SDKModels {
     AnimalEventos: AnimalEventos,
     FinanceiroCategoria: FinanceiroCategoria,
     FinanceiroMovimentacao: FinanceiroMovimentacao,
+    AnimalRFID: AnimalRFID,
     
   };
 
