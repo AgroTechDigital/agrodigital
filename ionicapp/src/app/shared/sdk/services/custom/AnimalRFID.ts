@@ -97,13 +97,14 @@ export class AnimalRFIDApi extends BaseLoopBackApi {
          * (The remote method definition does not provide any description.)
          * </em>
    *
-   * @returns {object} An empty reference that will be
+   * @returns {object[]} An empty reference that will be
    *   populated with the actual data once the response is returned
    *   from the server.
    *
-   * Data properties:
-   *
-   *  - `result` – `{any}` - 
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `AnimalRFID` object.)
+   * </em>
    */
   public leitura(customHeaders?: Function): Observable<any> {
     let _method: string = "GET";

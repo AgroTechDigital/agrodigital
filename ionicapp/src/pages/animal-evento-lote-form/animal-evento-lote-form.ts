@@ -30,7 +30,7 @@ export class AnimalEventoLoteFormPage {
 
   leitura() {
     this.rfidApi.leitura().subscribe((data: AnimalRFID[]) => {
-      console.log(data);
+      console.log(data)
       data.forEach(i => {
         this.lista.push(i)
       });
