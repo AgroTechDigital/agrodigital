@@ -15,8 +15,8 @@ export class FinanceiroMovimentacaoListaPage {
   public lista: FinanceiroMovimentacao[];
 
   constructor(public navCtrl: NavController,
-     public navParams: NavParams,
-      public API: FinanceiroMovimentacaoApi) {
+    public navParams: NavParams,
+    public API: FinanceiroMovimentacaoApi) {
   }
 
   ionViewDidLoad() {
@@ -32,26 +32,21 @@ export class FinanceiroMovimentacaoListaPage {
     this.API.find({
       where: {
         descricao: { like: this.termoBuscado, options: 'i' }
-      }, include: 'categoria' 
+      }, include: 'categoria'
     }).subscribe(
       (data: FinanceiroMovimentacao[]) => {
         this.lista = data;
-        console.log(JSON.stringify(this.lista));
-      }                  
-    )    
+      }
+    )
   }
 
-  abrir(item: FinanceiroMovimentacao = null, entrada: boolean) {
-        console.log(JSON.stringify("entrada: " + entrada));
-        
-    if (item && entrada)      
+  abrir(entrada: boolean, item: FinanceiroMovimentacao = null) {
+    if (entrada) { //receber
       this.navCtrl.push('FinanceiroMovimentacaoReceberFormPage', { item: item });
-    else if (!item && entrada)            
-      this.navCtrl.push('FinanceiroMovimentacaoReceberFormPage');
-    else if (!item && !entrada)    
-              
-        this.navCtrl.push('FinanceiroMovimentacaoPagarFormPage', { item: item });
-    else             
-        this.navCtrl.push('FinanceiroMovimentacaoPagarFormPage');
- }
+    }
+    else { //pagar
+      this.navCtrl.push('FinanceiroMovimentacaoPagarFormPage', { item: item });
+    }
+
+  }
 }

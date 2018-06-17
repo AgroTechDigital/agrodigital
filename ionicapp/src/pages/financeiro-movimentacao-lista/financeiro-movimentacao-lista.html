@@ -8,12 +8,12 @@
     </button>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="abrir(false,true)">
+      <button ion-button icon-only (click)="abrir(true)">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons end>
-      <button ion-button icon-only (click)="abrir(false,false)">
+      <button ion-button icon-only (click)="abrir(false)">
         <ion-icon name="remove"></ion-icon>
       </button>
     </ion-buttons>
@@ -33,7 +33,7 @@
       {{item.debito}} 
       {{item.descricao}}
       R$ {{item.valor}}
-      <p>{{item.categoria.descricao}}</p>
+      <p>{{item?.categoria?.descricao}}</p>
     </ion-item>
   </ion-list>
 
