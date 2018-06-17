@@ -29,29 +29,46 @@
 <ion-content>
 
   <div [ngSwitch]="animalSegment">
-    <ion-list *ngSwitchCase="'informacoes'">
+    <div *ngSwitchCase="'informacoes'">
+
+      <ion-item-group>
+        <ion-item-divider color="light">Informações</ion-item-divider>
+
+        <ion-item>
+          <ion-icon color="primary" name="cube" item-start></ion-icon>
+          <ion-label stacked>Etiqueta</ion-label>
+          <ion-input id="etiqueta" type="text" [(ngModel)]="dadosDoForm.etiqueta"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon color="primary" name="cube" item-start></ion-icon>
+          <ion-label stacked>Data de nascimento</ion-label>
+          <ion-datetime [(ngModel)]="dadosDoForm.nascimento" type="datetime" displayFormat="DD/MM/YYYY"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon color="primary" name="cube" item-start></ion-icon>
+          <ion-label stacked>Peso</ion-label>
+          <ion-input id="peso" type="text" [(ngModel)]="dadosDoForm.peso"></ion-input>
+        </ion-item>
+
+      </ion-item-group>
+
+      <ion-item-group>
+      <ion-item-divider color="light">Classificação</ion-item-divider>
 
       <ion-item>
         <ion-icon color="primary" name="cube" item-start></ion-icon>
-        <ion-label stacked>Etiqueta</ion-label>
-        <ion-input id="etiqueta" type="text" [(ngModel)]="dadosDoForm.etiqueta"></ion-input>
+        <ion-label>Sexo</ion-label>
+        <ion-select [(ngModel)]="dadosDoForm.sexo">
+          <ion-option value="true">Macho</ion-option>
+          <ion-option value="false">Fêmea</ion-option>
+        </ion-select>
       </ion-item>
 
       <ion-item>
         <ion-icon color="primary" name="cube" item-start></ion-icon>
-        <ion-label stacked>Data de nascimento</ion-label>
-        <ion-datetime [(ngModel)]="dadosDoForm.nascimento" type="datetime" displayFormat="DD/MM/YYYY"></ion-datetime>
-      </ion-item>
-
-      <ion-item>
-        <ion-icon color="primary" name="cube" item-start></ion-icon>
-        <ion-label stacked>Peso</ion-label>
-        <ion-input id="peso" type="text" [(ngModel)]="dadosDoForm.peso"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-icon color="primary" name="cube" item-start></ion-icon>
-        <ion-label stacked>Raça</ion-label>
+        <ion-label>Raça</ion-label>
         <ion-select [(ngModel)]="dadosDoForm.raca">
           <ion-option value="nelore">Nelore</ion-option>
           <ion-option value="tabapua">Tabapuã</ion-option>
@@ -59,7 +76,7 @@
         </ion-select>
       </ion-item>
 
-      <ion-item>
+      <!-- <ion-item>
         <ion-icon color="primary" name="cube" item-start></ion-icon>
         <ion-label stacked>Tipo</ion-label>
         <ion-select [(ngModel)]="dadosDoForm.tipo">
@@ -67,11 +84,11 @@
           <ion-option value="equino">Equino</ion-option>
           <ion-option value="bubalino">Bubalino</ion-option>
         </ion-select>
-      </ion-item>
+      </ion-item> -->
 
       <ion-item>
         <ion-icon color="primary" name="cube" item-start></ion-icon>
-        <ion-label stacked>Finalidade</ion-label>
+        <ion-label>Finalidade</ion-label>
         <ion-select [(ngModel)]="dadosDoForm.finalidade">
           <ion-option value="cria">Cria</ion-option>
           <ion-option value="recria">Recria</ion-option>
@@ -81,7 +98,7 @@
 
       <ion-item>
         <ion-icon color="primary" name="cube" item-start></ion-icon>
-        <ion-label stacked>Status</ion-label>
+        <ion-label>Status</ion-label>
         <ion-select [(ngModel)]="dadosDoForm.status">
           <ion-option value="vivo">Vivo</ion-option>
           <ion-option value="morto">Morto</ion-option>
@@ -106,18 +123,11 @@
         </ion-select>
       </ion-item>
 
-      <ion-item>
-        <ion-icon color="primary" name="cube" item-start></ion-icon>
-        <ion-label stacked>Sexo</ion-label>
-        <ion-select [(ngModel)]="dadosDoForm.sexo">
-          <ion-option value="true">Macho</ion-option>
-          <ion-option value="false">Fêmea</ion-option>
-        </ion-select>
-      </ion-item>
+      </ion-item-group>
 
-    </ion-list>
+    </div>
 
-    <ion-list *ngSwitchCase="'eventos'">
+    <div *ngSwitchCase="'eventos'">
       <div *ngIf="dadosDoForm.id">
         <ion-list>
           <ion-item text-wrap *ngFor="let item of listaEventos" (click)="abrirEvento(item)">
@@ -142,7 +152,7 @@
           <ion-icon name="add"></ion-icon>
         </button>
       </ion-fab>
-    </ion-list>
+    </div>
 
   </div>
 

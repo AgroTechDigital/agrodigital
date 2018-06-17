@@ -1,34 +1,44 @@
 <ion-header>
 
-    <ion-navbar color="primary">
-      <ion-title>Piquetes</ion-title>
-  
-      <button ion-button icon-only menuToggle>
-        <ion-icon name="menu"></ion-icon>
+  <ion-navbar color="primary">
+    <ion-title>Piquetes</ion-title>
+
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="abrir()">
+        <ion-icon name="add"></ion-icon>
       </button>
-  
-      <ion-buttons end>
-        <button ion-button icon-only (click)="abrir()">
-          <ion-icon name="add"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-navbar>
-  
-    <ion-toolbar color="primary">
-      <ion-searchbar (input)="buscando = true" (ionInput)="buscar()" [(ngModel)]="termoBuscado" debounce="500" placeholder="Pesquisar..."></ion-searchbar>
-    </ion-toolbar>
-  
-  </ion-header>
-  
-  <ion-content>
-  
-    <ion-list>
-      <ion-item text-wrap *ngFor="let item of lista" (click)="abrir(item)">
-        <ion-avatar item-start>
-          <img src="assets/imgs/img-pasto.jpg">
-        </ion-avatar>
-        {{ item.nome }}
-      </ion-item>
-    </ion-list>
-  
-  </ion-content>
+    </ion-buttons>
+  </ion-navbar>
+
+  <ion-toolbar color="primary">
+    <ion-searchbar (input)="buscando = true" (ionInput)="buscar()" [(ngModel)]="termoBuscado" debounce="500" placeholder="Pesquisar..."></ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item text-wrap *ngFor="let item of lista" (click)="abrir(item)">
+      <ion-avatar item-start>
+        <img src="assets/imgs/img-pasto.jpg">
+      </ion-avatar>
+      <small>{{ item?.modulo?.descricao }}</small>
+      <h3>{{ item.numero }}</h3>
+      <!-- <p>{{ item.tipoCapim }} / {{ item.status }}</p> -->
+      <p>{{ item.area }} Ha / {{ item.capacidadeUa }} Ua</p>
+
+      <div item-end>
+          <ion-badge *ngIf="item.tipoRecuperacao == 'pronto'" class="success">Pronto</ion-badge>
+          <ion-badge *ngIf="item.tipoRecuperacao == 'recuperacao'" class="warning">Recuperação</ion-badge>
+          <ion-badge *ngIf="item.tipoRecuperacao == 'ocupado'" color="danger">Ocupado</ion-badge>
+          <ion-badge *ngIf="item.tipoRecuperacao == 'interditado'" color="danger">Interditado</ion-badge>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
