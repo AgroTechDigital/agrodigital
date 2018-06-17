@@ -23,14 +23,15 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Dashboard', component: DashboardPage},
-      { title: 'Animais', component: 'AnimalListaPage'},
-      { title: 'Evento em Lote', component: 'AnimalEventoLoteFormPage'},
-      { title: 'Módulos', component: 'ModuloListaPage'},
+      { title: 'Dashboard', component: DashboardPage },
+      { title: 'Animais', component: 'AnimalListaPage' },
+      { title: 'Evento em Lote', component: 'AnimalEventoLoteFormPage' },
+      { title: 'Módulos', component: 'ModuloListaPage' },
       { title: 'Piquetes', component: 'PiqueteListaPage' },
-      { title: 'Manejo', component: 'ManejoFormPage'},
-      { title: 'Categoria', component: 'FinanceiroCategoriaListaPage'},
-      { title: 'Lançamento de contas', component: 'FinanceiroMovimentacaoListaPage'}
+      { title: 'Manejo', component: 'ManejoFormPage' },
+      { title: 'Financeiro', component: null },
+      { title: 'Categoria', component: 'FinanceiroCategoriaListaPage' },
+      { title: 'Lançamento de contas', component: 'FinanceiroMovimentacaoListaPage' }
       // { title: 'Cliente', component: 'ClienteListaPage'},
       // { title: 'Compra', component: 'CompraListaPage'},
       // { title: 'Venda', component: 'VendaListaPage'},
