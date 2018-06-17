@@ -44,8 +44,8 @@
 
   <ion-list>
     <ion-item text-wrap *ngFor="let item of lista" (click)="abrir(item.debito,item)">      
-      <ion-icon item-start *ngIf="item.debito" color="danger" name="remove-circle"></ion-icon>
-      <ion-icon item-start *ngIf="!item.debito" class="success-text" name="checkmark-circle"></ion-icon>
+      <ion-icon item-start *ngIf="!item.debito" color="danger" name="remove-circle"></ion-icon>
+      <ion-icon item-start *ngIf="item.debito" class="success-text" name="checkmark-circle"></ion-icon>
       {{item.descricao}}
       <p>{{item?.categoria?.descricao}}</p>
       <div item-end>
