@@ -14,6 +14,14 @@ export class PiqueteFormPage {
   public listaEventos: PiqueteEventos[] = [];
   public piqueteSegment: string = 'informacoes';
 
+  public listaTipoBase: any[] = [
+    { id: 1, nome: "Touro", UA: 1.25, sexo: 'M', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
+    { id: 2, nome: "Vaca", UA: 1.0, sexo: 'F', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
+    { id: 3, nome: "De 2 a 3 anos", UA: 0.75, sexo: '', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
+    { id: 4, nome: "Até 2 Anos", UA: 0.50, sexo: '', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
+    { id: 5, nome: "Até 1 ano", UA: 0.25, sexo: '', image: 'img-gado.jpg', qtdMacho: 0, qtdFemea: 0 },
+  ]
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -23,7 +31,10 @@ export class PiqueteFormPage {
     public piqueteEventosApi: PiqueteEventosApi
   ) {
     let item = navParams.get('item');
-    if (item) this.dadosDoForm = Object.assign(new Piquete, item);
+    if (item) {
+      this.dadosDoForm = Object.assign(new Piquete, item);
+      if (!this.dadosDoForm.animaisSimplificado) this.dadosDoForm.animaisSimplificado = this.listaTipoBase;
+    }
   }
 
   ionViewDidEnter() {
@@ -59,7 +70,7 @@ export class PiqueteFormPage {
     try {
       if (!this.dadosDoForm.nome) throw 'Informe um nome';
       if (!this.dadosDoForm.moduloId) throw 'Selecione algum módulo';
-
+      
       this.API.upsert(this.dadosDoForm).subscribe(
         (retorno: Piquete) => {
           this.navCtrl.pop();

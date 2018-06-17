@@ -14,7 +14,7 @@ export class AnimalFormPage {
   public animalSegment: string = 'informacoes';
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public API: AnimalApi,
     public animalEventosApi: AnimalEventosApi,
@@ -23,13 +23,15 @@ export class AnimalFormPage {
     let item = navParams.get('item');
     if (item) this.dadosDoForm = Object.assign(new Animal, item);
 
-    this.dadosDoForm.raca = "nelore"
-    this.dadosDoForm.tipo = "bovino";
-    this.dadosDoForm.finalidade = "cria";
-    this.dadosDoForm.status = "vivo";
-    this.dadosDoForm.unidadeAnimal = 1;
-    this.dadosDoForm.sexo = false;
-    this.dadosDoForm.categoria = "remover";
+    if (!item) {
+      this.dadosDoForm.raca = "nelore"
+      this.dadosDoForm.tipo = "bovino";
+      this.dadosDoForm.finalidade = "cria";
+      this.dadosDoForm.status = "vivo";
+      this.dadosDoForm.unidadeAnimal = 1;
+      this.dadosDoForm.sexo = false;
+      this.dadosDoForm.categoria = "remover";
+    }
   }
 
   ionViewDidEnter() {
@@ -58,7 +60,7 @@ export class AnimalFormPage {
 
     try {
       if (!this.dadosDoForm.tipo) throw 'Informe o tipo do animal';
-      
+
       this.API.upsert(this.dadosDoForm).subscribe(
         (retorno: Animal) => {
           this.navCtrl.pop();

@@ -28,7 +28,7 @@
         <img src="assets/imgs/img-pasto.jpg">
       </ion-avatar>
       <small>{{ item?.modulo?.descricao }}</small>
-      <h3>{{ item.numero }}</h3>
+      <h3><span *ngIf="item.nome">{{ item.nome }} -</span> {{ item.numero }}</h3>
       <!-- <p>{{ item.tipoCapim }} / {{ item.status }}</p> -->
       <p>{{ item.area }} Ha / {{ item.capacidadeUa }} Ua</p>
 

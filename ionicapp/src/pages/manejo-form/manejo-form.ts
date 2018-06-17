@@ -48,9 +48,11 @@ export class ManejoFormPage {
 
   subtrair(item: any, sexo: any) {
     if (sexo == 'F')
-      item.qtdFemea = (item.qtdFemea == 0) ? 0 : item.qtdFemea - 1;
+      // item.qtdFemea = (item.qtdFemea == 0) ? 0 : item.qtdFemea - 1;
+      item.qtdFemea -= 1;
     else if (sexo == 'M')
-      item.qtdMacho = (item.qtdMacho == 0) ? 0 : item.qtdMacho - 1;
+      // item.qtdMacho = (item.qtdMacho == 0) ? 0 : item.qtdMacho - 1;
+      item.qtdMacho -= 1;
     this.calcula();
   }
 
@@ -70,70 +72,103 @@ export class ManejoFormPage {
     this.dadosDoForm.cabecas = total;
   }
 
+
+  calculaPiquete(piquete: Piquete): Piquete {
+    piquete.cabecas = 0;
+    piquete.UA = 0;
+    piquete.animaisSimplificado.forEach(i => {
+      if (i.sexo == 'M' || !i.sexo) {
+        piquete.cabecas += i.qtdMacho;
+        piquete.UA += i.qtdMacho * i.UA;
+      }
+      if (i.sexo == 'F' || !i.sexo) {
+        piquete.cabecas += i.qtdFemea;
+        piquete.UA += i.qtdFemea * i.UA;
+      }
+    });
+    return piquete;
+  }
+
   salvar() {
 
-    try {
-      if (!this.dadosDoForm.destinoId) throw 'informw o destino do manejo!';
+    if (confirm('Deseja realmente finalizar o manejo?')) {
+      try {
+        if (!this.dadosDoForm.destinoId) throw 'informw o destino do manejo!';
 
-      //recupera a origem e o destino
-      let where = {
-        or: []
-      }
-      if (this.dadosDoForm.origemId) where.or.push({ id: this.dadosDoForm.origemId });
-      if (this.dadosDoForm.destinoId) where.or.push({ id: this.dadosDoForm.destinoId });
-
-      if (where.or.length) {
-        console.log('where ok');
-
-        this.piqueteApi.find({ where: where }).subscribe((r: Piquete[]) => {
-          console.log('piquetes', r);
-          //Origem
-          let origem: Piquete = null;
-          if (this.dadosDoForm.origemId && r.length) {
-            origem = r.find(x => x.id == this.dadosDoForm.origemId);
-            console.log('origem', origem);
-            if (!origem.animaisSimplificado) {
-              origem.animaisSimplificado = this.listaTipoBase;
-            }
-            origem.animaisSimplificado.forEach(i => {
-              let animal = this.listaTipo.find(x => x.id == i.id);
-              if (animal.sexo == 'M') i.qtdMacho -= animal.qtdMacho;
-              else if (animal.sexo == 'F') i.qtdFemea -= animal.qtdFemea;
-            });
-            this.piqueteApi.upsert(origem).subscribe();
-          }
-
-          //Destino
-          let destino: Piquete = null;
-          if (this.dadosDoForm.origemId && r.length) {
-            destino = r.find(x => x.id == this.dadosDoForm.origemId);
-            console.log('destino', destino);
-            if (!destino.animaisSimplificado) {
-              destino.animaisSimplificado = this.listaTipoBase;
-            }
-            destino.animaisSimplificado.forEach(i => {
-              let animal = this.listaTipo.find(x => x.id == i.id);
-              if (animal.sexo == 'M') i.qtdMacho += animal.qtdMacho;
-              else if (animal.sexo == 'F') i.qtdFemea += animal.qtdFemea;
-            });
-            this.piqueteApi.upsert(destino).subscribe();
-          }
-        });
-      }
-
-      this.dadosDoForm.animaisSimplificado = this.listaTipo;
-
-      this.dadosDoForm.data = new Date();
-      this.dadosDoForm.estacao = "chuva";
-
-      this.API.upsert(this.dadosDoForm).subscribe(
-        (data: Manejo) => {
-          //this.navCtrl.pop();
+        //recupera a origem e o destino
+        let where = {
+          or: []
         }
-      )
+        if (this.dadosDoForm.origemId) where.or.push({ id: this.dadosDoForm.origemId });
+        if (this.dadosDoForm.destinoId) where.or.push({ id: this.dadosDoForm.destinoId });
 
-    } catch (error) {
-      alert(error);
+        if (where.or.length) {
+          console.log('where ok');
+
+          this.piqueteApi.find({ where: where }).subscribe((r: Piquete[]) => {
+            console.log('piquetes', r);
+            //Origem
+            let origem: Piquete = null;
+            if (this.dadosDoForm.origemId) {
+              origem = r.find(x => x.id == this.dadosDoForm.origemId);
+              console.log('origem', origem);
+              if (!origem.animaisSimplificado) {
+                origem.animaisSimplificado = this.listaTipoBase;
+              }
+              origem.animaisSimplificado.forEach(i => {
+                let animal = this.listaTipo.find(x => x.id == i.id);
+                if (animal.sexo == 'M') i.qtdMacho -= animal.qtdMacho;
+                else if (animal.sexo == 'F') i.qtdFemea -= animal.qtdFemea;
+                else {
+                  i.qtdMacho += animal.qtdMacho;
+                  i.qtdFemea += animal.qtdFemea;
+                }
+              });
+              origem = this.calculaPiquete(origem);
+              this.piqueteApi.upsert(origem).subscribe();
+            }
+
+            //Destino
+            let destino: Piquete = null;
+            if (this.dadosDoForm.destinoId) {
+              console.log('destino', destino);
+              destino = r.find(x => x.id == this.dadosDoForm.destinoId);
+              console.log('destino', destino);
+              if (!destino.animaisSimplificado) {
+                destino.animaisSimplificado = this.listaTipoBase;
+              }
+              destino.animaisSimplificado.forEach(i => {
+                let animal = this.listaTipo.find(x => x.id == i.id);
+                if (animal.sexo == 'M') i.qtdMacho += animal.qtdMacho;
+                else if (animal.sexo == 'F') i.qtdFemea += animal.qtdFemea;
+                else {
+                  i.qtdMacho += animal.qtdMacho;
+                  i.qtdFemea += animal.qtdFemea;
+                }
+              });
+              console.log('destino final', destino);
+              destino = this.calculaPiquete(destino);
+              this.piqueteApi.upsert(destino).subscribe();
+            }
+          });
+        }
+
+        this.dadosDoForm.animaisSimplificado = this.listaTipo;
+
+        this.dadosDoForm.data = new Date();
+        this.dadosDoForm.estacao = "chuva";
+
+        this.API.upsert(this.dadosDoForm).subscribe(
+          (data: Manejo) => {
+            setTimeout(() => {
+              this.navCtrl.setRoot('AnimalListaPage');
+            }, 1000);
+          }
+        )
+
+      } catch (error) {
+        alert(error);
+      }
     }
   }
 
