@@ -27,7 +27,15 @@
       <ion-avatar item-start>
         <img src="assets/imgs/img-gado.jpg">
       </ion-avatar>
-      {{ item.etiqueta }}
+
+      <small>{{ item.raca }}</small>
+      <h2>{{ item.etiqueta }}</h2>
+
+      <div item-end style="text-align: right">
+          <p>{{ (item.peso/30) | number }}@</p>
+          <p>{{ item.status }}</p>
+      </div>
+
     </ion-item>
   </ion-list>
 

@@ -25,11 +25,12 @@ export class PiqueteListaPage {
     this.API.find({
       where: {
         nome: { like: this.termoBuscado, options: 'i' }
-      }
+      }, include: 'modulo'
     }).subscribe(
       (data: Piquete[]) => {
         this.lista = data;
-
+ console.log(data);
+ 
       }
     )
   }
