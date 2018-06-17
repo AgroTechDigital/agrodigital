@@ -22,5 +22,41 @@
     <ion-label stacked>Descrição</ion-label>
     <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.descricao"></ion-input>
   </ion-item> 
+ 
+  <ion-item>
+    <ion-icon color="primary" name="cube" item-start></ion-icon>
+    <ion-label stacked>Valor</ion-label>
+    <ion-input id="valor" type="text" [(ngModel)]="dadosDoForm.valor"></ion-input>
+  </ion-item> 
+  
+  <ion-item>
+    <ion-label color="primary" name="cube" item-start>Data</ion-label>
+    <ion-datetime [(ngModel)]="dadosDoForm.dataMovimentacao" type="datetime" displayFormat="DD/MM/YYYY"></ion-datetime>
+  </ion-item>
+
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" name="cube" item-start>Tipo de custo</ion-label>
+      <ion-select [(ngModel)]="dadosDoForm.custoFixo">
+        <ion-option value="1">Fixo</ion-option>
+        <ion-option value="0">Variável</ion-option>                                    
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-icon color="primary" name="grid" item-start></ion-icon>
+    <ion-label>Categoria</ion-label>
+    <ion-select [(ngModel)]="dadosDoForm.categoriaId">
+      <ion-option value="" selected>Nenhum</ion-option>
+      <ion-option *ngFor="let item of listaCategorias" value="{{item.id}}">{{ item.descricao }}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon color="primary" name="cube" item-start></ion-icon>
+    <ion-label stacked>Tags</ion-label>
+    <ion-input id="tags" type="text" [(ngModel)]="dadosDoForm.tags"></ion-input>
+  </ion-item>
 
 </ion-content>

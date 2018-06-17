@@ -16,7 +16,7 @@ class HttpClient
   public:
     HttpClient();
     String get(String url);
-    String post(String url, String contentType, char* body);
+    String post(String url, String contentType, String body);
 
   private:
 
