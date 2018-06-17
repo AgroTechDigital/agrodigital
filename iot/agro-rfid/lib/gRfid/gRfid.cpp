@@ -28,6 +28,20 @@ GRfid::GRfid()
 
 }
 
+void bipBuzzer(int qtBip){
+
+  for (byte i = 1; i <= qtBip; i++)
+  {
+
+    digitalWrite(buzzer, HIGH);
+    delay(100);
+    digitalWrite(buzzer, LOW);
+    delay(100);
+
+  }
+
+}
+
 void GRfid::setSetup()
 {
 
@@ -37,8 +51,6 @@ void GRfid::setSetup()
   mfrc522.PCD_Init();
 
 };
-
-
 
 void GRfid::setLoop()
 {
@@ -60,31 +72,31 @@ void GRfid::setLoop()
 
   for (byte i = 0; i < mfrc522.uid.size; i++)
   {
-     Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " ");
+     Serial.print(mfrc522.uid.uidByte[i] < 0x10 ? "0" : "");
      Serial.print(mfrc522.uid.uidByte[i], HEX);
-     _content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? " 0" : " "));
+     _content.concat(String(mfrc522.uid.uidByte[i] < 0x10 ? "0" : ""));
      _content.concat(String(mfrc522.uid.uidByte[i], HEX));
   }
 
-  _content.toUpperCase().trim();
+  _content.toUpperCase();
 
   if(_content.length() > 0){
 
     Serial.println();
     Serial.println(_content);
 
-    String request = httpClient.get("http://192.168.1.178:3000/api/modelos");
+    bipBuzzer(1);
+
+    String request = "";
+
+    String body = "{'etiqueta':'999', 'peso': 100}";
+
+    request = httpClient.post("http://192.168.1.20:3000/api/animalRFIDs", "json", body);
 
     Serial.println();
     Serial.print("http client : ");
     Serial.println(request);
     Serial.println();
-
-    digitalWrite(buzzer, HIGH);
-    delay(200);
-    digitalWrite(buzzer, LOW);
-    delay(200);
-
 
   }
 

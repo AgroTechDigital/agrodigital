@@ -46,7 +46,7 @@ String HttpClient::get(String url)
 
 };
 
-String HttpClient::post(String url, String contentType, char* body)
+String HttpClient::post(String url, String contentType, String body)
 {
 
     String payload;
