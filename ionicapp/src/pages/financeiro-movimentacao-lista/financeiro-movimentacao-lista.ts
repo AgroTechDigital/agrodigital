@@ -32,7 +32,7 @@ export class FinanceiroMovimentacaoListaPage {
     this.API.find({
       where: {
         descricao: { like: this.termoBuscado, options: 'i' }
-      }, include: { FinanceiroCategoria }
+      }, include: 'categoria' 
     }).subscribe(
       (data: FinanceiroMovimentacao[]) => {
         this.lista = data;
@@ -42,6 +42,7 @@ export class FinanceiroMovimentacaoListaPage {
   }
 
   abrir(item: FinanceiroMovimentacao = null, entrada: boolean) {
+        console.log(JSON.stringify("entrada: " + entrada));
         
     if (item && entrada)      
       this.navCtrl.push('FinanceiroMovimentacaoReceberFormPage', { item: item });
