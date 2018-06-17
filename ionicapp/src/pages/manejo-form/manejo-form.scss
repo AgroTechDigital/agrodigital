@@ -1,3 +1,56 @@
 page-manejo-form {
+    .totais{
+        color: #fff;
+        margin-top: -15px;
 
+        .col{
+            padding: 0 8px;
+        }
+
+        p{
+            margin: 0;
+            font-size: 35px;
+            font-weight: bold;
+        }
+    }
+
+    .quantidades{
+        margin: 5px 20px 0;
+
+        p{
+            position: relative;
+            text-align: center;
+            font-size: 11px;
+            margin-bottom: -17px;
+        }
+
+        input[type=number]{
+            @include border-radius(3px);
+            border: 1px solid #ccc;
+            padding: 25px 10px 15px;
+            width: 100px;
+            text-align: center;
+        }
+
+        .buttons{
+            position: relative;
+
+            button{
+                position: absolute;
+                display: block;
+                padding: 50px;
+                width: 40px;
+                height: 40px;
+                top: 6px;
+
+                &.btnMais{
+                    left: -22px;
+                }
+
+                &.btnMenos{
+                    right: -22px;
+                }
+            }
+        }
+    }
 }

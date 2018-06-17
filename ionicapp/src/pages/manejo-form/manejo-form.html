@@ -13,18 +13,14 @@
     </ion-buttons>
   </ion-navbar>
 
-  <ion-toolbar color="primary">
+  <ion-toolbar color="primary" class="totais">
     <ion-grid>
       <ion-row>
         <ion-col>
-          <!-- <ion-label stacked>Total Cabeças</ion-label>
-            <ion-input type="text" readonly [(ngModel)]="dadosDoForm.cabecas"></ion-input> -->
           <small>Cabeças</small>
           <p>{{ dadosDoForm.cabecas ? dadosDoForm.cabecas : 0 }}</p>
         </ion-col>
         <ion-col>
-          <!-- <ion-label stacked>Total UA</ion-label>
-            <ion-input type="text" readonly [(ngModel)]="dadosDoForm.UA"></ion-input> -->
           <small>Unidade animal (UA)</small>
           <p>{{ dadosDoForm.UA ? dadosDoForm.UA : 0 }}</p>
         </ion-col>
@@ -36,7 +32,9 @@
 
 <ion-content>
 
-  <ion-list>
+  <ion-item-group>
+    <ion-item-divider color="light">Informações</ion-item-divider>
+    
     <ion-item>
       <ion-icon color="primary" name="cube" item-start></ion-icon>
       <ion-label>Origem</ion-label>
@@ -65,39 +63,52 @@
       <ion-input id="descricao" type="text" [(ngModel)]="dadosDoForm.descricao"></ion-input>
     </ion-item>
 
-    <h3>Animais</h3>
+  </ion-item-group>
+
+  <ion-item-group>
+
+    <ion-item-divider color="light">Animais</ion-item-divider>
 
     <ion-item text-wrap *ngFor="let item of listaTipo">
       <ion-avatar item-start>
         <img src="assets/imgs/{{item.image}}">
       </ion-avatar>
 
-      {{item.nome}}
+      {{ item.nome }}
 
       <div item-end>
-        <div *ngIf="item.sexo == 'M' || !item.sexo">
-          Macho
-          <button ion-button icon-only round (click)="soma(item,'M');">
-            <ion-icon name="add"></ion-icon>
-          </button>
-          <button ion-button icon-only round (click)="subtrair(item,'M')">
-            <ion-icon name="remove"></ion-icon>
-          </button>
-          {{item.qtdMacho}}
-        </div>
-        <div *ngIf="item.sexo == 'F' || !item.sexo">
-          Femea
-          <button ion-button icon-only round (click)="soma(item,'F');">
-            <ion-icon name="add"></ion-icon>
-          </button>
-          <button ion-button icon-only round (click)="subtrair(item,'M')">
-            <ion-icon name="remove"></ion-icon>
-          </button>
-          {{item.qtdFemea}}
+        <div class="quantidades">
+          <div *ngIf="item.sexo == 'M' || !item.sexo">
+            <p>Macho</p>
+            <div class="buttons">
+              <button ion-button icon-only round (click)="soma(item,'M');" class="btnMais">
+                <ion-icon name="add"></ion-icon>
+              </button>
+              <button ion-button icon-only round (click)="subtrair(item,'M')" class="btnMenos">
+                <ion-icon name="remove"></ion-icon>
+              </button>
+            </div>
+            <!-- {{item.qtdMacho}} -->
+            <input type="number" [(ngModel)]="item.qtdMacho" (input)="calcula()">
+          </div>
+          <div *ngIf="item.sexo == 'F' || !item.sexo">
+            <p>Femea</p>
+            <div class="buttons">
+              <button ion-button icon-only round (click)="soma(item,'F');" class="btnMais">
+                <ion-icon name="add"></ion-icon>
+              </button>
+              <button ion-button icon-only round (click)="subtrair(item,'M')" class="btnMenos">
+                <ion-icon name="remove"></ion-icon>
+              </button>
+            </div>
+            <!-- {{item.qtdFemea}} -->
+            <input type="number" [(ngModel)]="item.qtdFemea" (input)="calcula()">
+          </div>
         </div>
       </div>
     </ion-item>
 
-  </ion-list>
+  </ion-item-group>
+
 
 </ion-content>
