@@ -1,0 +1,88 @@
+page-dashboard {
+    .custo-arroba{
+        @include border-radius(5px);
+        background: $success;
+        text-align: center;
+        padding: 20px 0 10px;
+        color: #fff;
+        margin-top: 15px;
+
+        &.negativo{
+            background: color($colors, danger);
+        }
+
+        p{
+            margin: 0;
+        }
+
+        h1{
+            letter-spacing: -4px;
+            font-weight: bold;
+            font-size: 63px;
+            margin: 0;
+        }
+    }
+
+    .controle-quantidade{
+        margin-bottom: 15px;
+
+        p{
+            @include border-radius(5px);
+            width: calc(50% - 7px);
+            display: inline-block;
+            margin: 0;
+            margin-right: 10px;
+            background: color($colors, primary);
+            text-align: center;
+            padding: 20px 0;
+            color: #fff;
+            
+            &:last-child{
+                margin-right: 0;
+            }
+
+            b{
+                font-size: 30px;
+                display: block;
+            }
+        }
+    }
+    
+    .controle-financeiro{
+        @include border-radius(5px);
+        position: relative;
+        overflow: hidden;
+
+        p{
+            margin: 0;
+            padding: 15px 18px;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .APagar{
+            background: color($colors, danger);
+        }
+        
+        .AReceber{
+            background: $success;
+        }
+
+        .saldo{
+            position: absolute;
+            top: 0; right: 0;
+            text-align: center;
+            height: 100%;
+            padding-top: 25px;
+            background: $success;
+            
+            &.negativo{
+                background: color($colors, danger);
+            }
+
+            b{
+                display: block;
+            }
+        }
+    }
+}
