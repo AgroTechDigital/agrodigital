@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PiqueteApi, FinanceiroMovimentacaoApi } from '../../app/shared/sdk';
 
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-dashboard',
   templateUrl: 'dashboard.html',
