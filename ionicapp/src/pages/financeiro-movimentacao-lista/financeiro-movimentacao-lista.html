@@ -8,13 +8,13 @@
     </button>
 
     <ion-buttons end>
-      <button ion-button icon-only (click)="abrir(true)">
-        <ion-icon name="add"></ion-icon>
+      <button ion-button icon-only (click)="abrir(false)">
+        <ion-icon font="white" color="white" name="checkmark-circle"></ion-icon>
       </button>
     </ion-buttons>
     <ion-buttons end>
-      <button ion-button icon-only (click)="abrir(false)">
-        <ion-icon name="remove"></ion-icon>
+      <button ion-button icon-only (click)="abrir(true)">
+        <ion-icon color="white" name="remove-circle"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -23,12 +23,12 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <em><b></b>Pagar: {{ Credito | currency: 'BRL' }}</em>
-          <em><b>Receber</b>: {{ Debito | currency: 'BRL' }}</em>
+          <em><b></b>Pagar: {{ Debito | currency: 'BRL' }}</em>
+          <em><b>Receber</b>: {{ Credito | currency: 'BRL' }}</em>
         </ion-col>
         <ion-col>
           <small>Saldo geral</small>
-          <p>{{ Debito - Credito | currency: 'BRL' }}</p>
+          <p>{{ Credito - Debito | currency: 'BRL' }}</p>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -44,8 +44,8 @@
 
   <ion-list>
     <ion-item text-wrap *ngFor="let item of lista" (click)="abrir(item.debito,item)">      
-      <ion-icon item-start *ngIf="!item.debito" color="danger" name="remove-circle"></ion-icon>
-      <ion-icon item-start *ngIf="item.debito" class="success-text" name="checkmark-circle"></ion-icon>
+      <ion-icon item-start *ngIf="item.debito" color="danger" name="remove-circle"></ion-icon>
+      <ion-icon item-start *ngIf="!item.debito" class="success-text" name="checkmark-circle"></ion-icon>
       {{item.descricao}}
       <p>{{item?.categoria?.descricao}}</p>
       <div item-end>

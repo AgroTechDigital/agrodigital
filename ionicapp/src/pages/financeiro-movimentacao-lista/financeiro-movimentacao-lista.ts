@@ -65,19 +65,22 @@ export class FinanceiroMovimentacaoListaPage {
     this.API.relatorioMovimentacoesFinanceiras().subscribe(
       (data2: any[]) => {
         data2.forEach(e => {
-          if (e._id) this.Debito = e.total;
-          else this.Credito = e.total;
+          if (e._id)
+          { this.Debito = e.total; }
+          else { this.Credito = e.total; }
         });
       }
     );
   }
 
-  abrir(entrada: boolean, item: FinanceiroMovimentacao = null) {
-    if (entrada) { //receber
-      this.navCtrl.push('FinanceiroMovimentacaoReceberFormPage', { item: item });
-    }
-    else { //pagar
+  abrir(pagamento: boolean, item: FinanceiroMovimentacao = null) {        
+    console.log("Pagar: " + pagamento);
+    
+    if (pagamento) { //pagar
       this.navCtrl.push('FinanceiroMovimentacaoPagarFormPage', { item: item });
+    }
+    else { //receber      
+      this.navCtrl.push('FinanceiroMovimentacaoReceberFormPage', { item: item });
     }
   }
 }
