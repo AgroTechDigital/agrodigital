@@ -32,12 +32,12 @@
 
   <div class="controle-financeiro">
     <p class="APagar">
-      <b>Pagar:</b> {{Credito | currency:'BRL':'symbol':'1.2-2'}}</p>
+      <b>Pagar:</b> {{ Debito | currency:'BRL':'symbol':'1.2-2'}}</p>
     <p class="AReceber">
-      <b>Receber:</b> {{Debito | currency:'BRL':'symbol':'1.2-2'}}</p>
+      <b>Receber:</b> {{ Credito | currency:'BRL':'symbol':'1.2-2'}}</p>
     <p class="saldo">
       <b>Saldo</b>
-      {{Debito-Credito | currency:'BRL':'symbol':'1.2-2'}}
+      {{Credito-Debito | currency:'BRL':'symbol':'1.2-2'}}
     </p>
   </div>
 
