@@ -24,8 +24,8 @@ export class FinanceiroMovimentacaoPagarFormPage {
     //Buscar Todos as Categorias
     this.categoriaApi.find().subscribe(
       (retorno: FinanceiroCategoria[]) => {
-        this.listaCategorias = retorno;
-      })
+        this.listaCategorias = retorno;        
+      })      
   }
 
   salvar() {
